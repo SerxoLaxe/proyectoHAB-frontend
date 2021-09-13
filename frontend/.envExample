@@ -1,0 +1,3 @@
+#Usamos esto, si queremos iniciar nuestro proyecto en otro ordenador, servidor o alojamiemnto, solo cambiaríamos la url del backend en esta linea del .env y no en cada uno de nuestros fetch, ( mejores practicas ).
+
+REACT_APP_BACKEND_URL=
