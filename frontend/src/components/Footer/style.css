@@ -1,0 +1,7 @@
+.footer-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 75vw;
+  list-style: none;
+}
