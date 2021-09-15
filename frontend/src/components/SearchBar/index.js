@@ -11,7 +11,7 @@ const SearchBar = () => {
   async function search(e) {
     e.preventDefault();
     const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/experiencias/search?` + 
+      `${process.env.REACT_APP_BACKEND_URL}/experiencias/search?` +
       new URLSearchParams({
         texto: searchText
       }),
@@ -28,19 +28,18 @@ const SearchBar = () => {
       const body = await res.json();
       console.log(body.data);
       setSearchResult(body.data)
-      
+
     } else {
       const error = await res.json();
       setError(error.message);
     }
-
   }
 
   return (
     <>
       <form className='search-bar' onSubmit={search}>
         <input
-        autoFocus='true'
+          autoFocus
           type='text'
           placeholder='Busca aquí tu próxima aventura'
           value={searchText}
@@ -52,19 +51,19 @@ const SearchBar = () => {
           type='button'
           value='filtro'
           onClick={() => {
-            if (filterButtonClicked){
+            if (filterButtonClicked) {
               setFilterButtonClicked(false);
             } else {
               setFilterButtonClicked(true);
             }
-            
+
           }} />
         <input
           type='submit'
           value='Buscar' />
       </form>
       {filterButtonClicked && <p>Clicaste el botón de filtro</p>}
-      {error && <FormError error={error}/>}
+      {error && <FormError error={error} />}
     </>
   );
 }

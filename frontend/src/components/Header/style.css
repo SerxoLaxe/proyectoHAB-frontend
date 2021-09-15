@@ -1,4 +1,6 @@
 .header{
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 4fr 5rem;
+  grid-template-rows: 1fr;
+  
 }
