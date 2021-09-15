@@ -1,15 +1,13 @@
 import LoginForm from "../../components/LoginForm";
 import Footer from "../../components/Footer";
+import UpperLeftLogo from "../../components/upperLeftLogo";
 import './style.css';
-import { Link } from "react-router-dom";
+
 
 const LoginPage = () => {
   return (
     <div className='login-page'>
-      <Link className='logo' to='/'>
-        <img className='logo' alt='logo' src='logo.svg' />
-        </Link>
-
+      <UpperLeftLogo className='logo'/>
       <LoginForm className='loginform' />
       <Footer className='footer' />
     </div>
