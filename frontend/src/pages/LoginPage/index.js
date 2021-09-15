@@ -7,9 +7,10 @@ import './style.css';
 const LoginPage = () => {
   return (
     <div className='login-page'>
-      <UpperLeftLogo className='logo'/>
+      <UpperLeftLogo className='logo' />
       <LoginForm className='loginform' />
       <Footer className='footer' />
+
     </div>
   );
 }
