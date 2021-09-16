@@ -32,22 +32,21 @@ const LoginForm = () => {
     if (res.ok) {
       setError("");
       const body = await res.json();
-      console.log('token:', body.data.token);
       setToken(body.data.token);
     } else {
-      const error = await res.json();
-      setError(error.message);
+      const errorNow = await res.json();
+      setError(errorNow.message);
     }
   };
 
 
   if (token) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
 
   return (
     <div className='login-div'>
-      <h2>Inicia sesión en Ryoko</h2>
+      <h2>Inicia sesión</h2>
 
       <form className='login-form' onSubmit={login}>
       <input
@@ -75,7 +74,7 @@ const LoginForm = () => {
       value='Iniciar sesion' />
       </form>
       <div className='text-box'>
-      <p>¿No tienes una cuenta?<Link to='/register'>Regístrate</Link></p>
+      <p>¿No tienes una cuenta? <Link to='/register'>Regístrate</Link></p>
       <Link to='/lostpassword'>¿Has olvidado tu contraseña?</Link>
       </div>
     {error && <FormError error={error} />}

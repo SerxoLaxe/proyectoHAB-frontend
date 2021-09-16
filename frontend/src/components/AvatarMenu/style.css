@@ -1,0 +1,8 @@
+.avatar-menu {
+  position: absolute;
+  right: 5rem;
+  top: 0.5rem;
+}
+.avatar-menu-list{
+  list-style: none;
+}
