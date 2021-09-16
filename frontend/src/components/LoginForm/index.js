@@ -34,8 +34,8 @@ const LoginForm = () => {
       const body = await res.json();
       setToken(body.data.token);
     } else {
-      const error = await res.json();
-      setError(error.message);
+      const errorNow = await res.json();
+      setError(errorNow.message);
     }
   };
 
