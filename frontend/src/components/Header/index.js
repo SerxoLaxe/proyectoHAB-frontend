@@ -4,6 +4,7 @@ import Avatar from '../Avatar'
 import { useUserTokenContext } from '../../contexts/UserTokenContext'
 import useUserProfile from "../../hooks/useUserProfile";
 import './style.css'
+import { useHistory } from "react-router";
 
 const Header = () => {
 
@@ -12,12 +13,17 @@ const Header = () => {
   console.log(
     user
   );
+  const history = useHistory();
 
   return (
     <div className='header'>
       <UpperLeftLogo />
       <SearchBar className='search-bar' />
-      <Avatar avatar={user[0]?.avatar || null} name={user[0]?.nombre || 'Jane Doe'} />
+      {user.length > 0
+        ?
+        <Avatar avatar={user[0]?.avatar || null} name={user[0]?.nombre || 'Jane Doe'} id={user[0]?.id} />
+        :
+        <button onClick={() => { history.push(`/login`) }}>Iniciar sesión</button>}
     </div>
   );
 }

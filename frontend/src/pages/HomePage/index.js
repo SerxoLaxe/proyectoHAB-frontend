@@ -5,8 +5,7 @@ import ExperienceSmall from '../../components/ExperienceSmall'
 import { useSearchResultContext } from '../../contexts/searchResultContext';
 
 const HomePage = () => {
-  const [searchResult,] = useSearchResultContext()
-  console.log(searchResult);
+  const [searchResult,] = useSearchResultContext();
 
   return (
     <div className='home-page'>

@@ -36,8 +36,8 @@ const SearchBar = () => {
   }
 
   return (
-    <>
-      <form className='search-bar' onSubmit={search}>
+    <div className='search-bar'>
+      <form className='search-form' onSubmit={search}>
         <input
           autoFocus
           type='text'
@@ -64,7 +64,7 @@ const SearchBar = () => {
       </form>
       {filterButtonClicked && <p>Clicaste el botón de filtro</p>}
       {error && <FormError error={error} />}
-    </>
+    </div>
   );
 }
 
