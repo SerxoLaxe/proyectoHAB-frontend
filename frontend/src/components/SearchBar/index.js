@@ -26,7 +26,6 @@ const SearchBar = () => {
     if (res.ok) {
       setError("");
       const body = await res.json();
-      console.log(body.data);
       setSearchResult(body.data)
 
     } else {

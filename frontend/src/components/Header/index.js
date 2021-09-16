@@ -10,9 +10,6 @@ const Header = () => {
 
   const [token] = useUserTokenContext();
   const [user] = useUserProfile(token);
-  console.log(
-    user
-  );
   const history = useHistory();
 
   return (
