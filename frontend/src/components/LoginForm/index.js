@@ -32,7 +32,6 @@ const LoginForm = () => {
     if (res.ok) {
       setError("");
       const body = await res.json();
-      console.log('token:', body.data.token);
       setToken(body.data.token);
     } else {
       const error = await res.json();
