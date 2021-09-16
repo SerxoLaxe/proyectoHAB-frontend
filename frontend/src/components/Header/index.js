@@ -1,4 +1,4 @@
-import UpperLeftLogo from "../upperLeftLogo";
+import Logo from "../Logo";
 import SearchBar from '../SearchBar'
 import Avatar from '../Avatar'
 import { useUserTokenContext } from '../../contexts/UserTokenContext'
@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <div className='header'>
-      <UpperLeftLogo />
+      <Logo />
       <SearchBar className='search-bar' />
       {user.length > 0
         ?

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import './style.css'
 
-const UpperLeftLogo = () => {
+const Logo = () => {
   return (
     <Link className='logo-link' to='/'>
       <img className='logo' alt='logo' src='logo.svg' />
@@ -9,4 +9,4 @@ const UpperLeftLogo = () => {
   );
 }
 
-export default UpperLeftLogo;
+export default Logo;

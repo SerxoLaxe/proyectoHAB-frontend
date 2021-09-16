@@ -1,15 +1,15 @@
 import LoginForm from "../../components/LoginForm";
 import Footer from "../../components/Footer";
-import UpperLeftLogo from "../../components/upperLeftLogo";
+import Logo from "../../components/Logo";
 import './style.css';
 
 
 const LoginPage = () => {
   return (
     <div className='login-page'>
-      <UpperLeftLogo className='logo' />
-      <LoginForm className='loginform' />
-      <Footer className='footer' />
+      <Logo name='logo' />
+      <LoginForm name='loginform' />
+      <Footer name='footer' />
 
     </div>
   );

@@ -6,10 +6,11 @@
   height: 100vh;
   gap: 4rem;
 }
+
 .logo {
 	align-self:flex-start;
   justify-self: left;
-  width: 10rem;
+  width: 20rem;
   margin: 0.5rem;
 }
 
