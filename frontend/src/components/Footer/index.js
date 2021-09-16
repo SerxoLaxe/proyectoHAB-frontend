@@ -4,17 +4,9 @@ import './style.css'
 const Footer = () => {
   return (
     <div className='footer'>
-      <ul className='footer-list'>
-        <li>
-          <Link to='/termsandconditions'>Términos y condiciones</Link>
-        </li>
-        <li>
-          <Link to='/about'>Sobre nosotros</Link>
-        </li>
-        <li>
-          <Link to='/contact'>Contacto</Link>
-        </li>
-      </ul>
+      <Link to='/termsandconditions'>Términos y condiciones</Link>
+      <Link to='/about'>Sobre nosotros</Link>
+      <Link to='/contact'>Contacto</Link>
     </div>
   )
 }
