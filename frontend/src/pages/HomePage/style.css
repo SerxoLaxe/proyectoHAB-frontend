@@ -1,0 +1,14 @@
+.home-page{
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+.experiences-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-gap: 1rem;
+}
+
+.experience{
+  width: 20rem;
+}

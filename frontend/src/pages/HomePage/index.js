@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import List from '../../components/List';
 import ExperienceSmall from '../../components/ExperienceSmall'
 import { useSearchResultContext } from '../../contexts/searchResultContext';
+import './style.css';
 
 const HomePage = () => {
   const [searchResult,] = useSearchResultContext();
@@ -15,7 +16,7 @@ const HomePage = () => {
           className='experiences-list'
           data={searchResult}
           render={(experiencia, index) =>
-          (<ExperienceSmall
+          (<ExperienceSmall className='experience'
             key={index}
             name={experiencia.nombre}
             description={experiencia.descripcion}
@@ -26,6 +27,7 @@ const HomePage = () => {
             startDate={experiencia.fecha_inicial}
             endDate={experiencia.fecha_final}
             id={experiencia.id}
+            thumbnails={experiencia.thumbnails}
           />)
 
           } />

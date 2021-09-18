@@ -1,6 +1,12 @@
 .header{
   display: grid;
-  grid-template-columns: 1fr 4fr 5rem;
+  grid-template-columns: 11rem 1fr 8rem;
   grid-template-rows: 1fr;
-  
+  margin-bottom: 0.5rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header button{
+  height: 2rem;
 }

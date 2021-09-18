@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import { useHistory } from 'react-router';
 import './style.css'
 
 const Logo = () => {
+  const history = useHistory();
   return (
-    <Link className='logo-link' to='/'>
-      <img className='logo' alt='logo' src='logo.svg' />
-    </Link>
+      <img className='logo' alt='logo' src='logo.svg' onClick={()=>{
+        history.push('/');
+      }}/>
   );
 }
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormError from '../FormError'
 import { useSearchResultContext } from "../../contexts/searchResultContext";
+import './style.css'
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');

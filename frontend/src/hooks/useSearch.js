@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useEntries = () => {
+const useSearch = () => {
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
@@ -19,4 +19,4 @@ const useEntries = () => {
   return [searchResult, setSearchResult];
 };
 
-export default useEntries;
+export default useSearch;
