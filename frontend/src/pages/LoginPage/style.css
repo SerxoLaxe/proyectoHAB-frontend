@@ -14,9 +14,3 @@
   align-self: center;
 }
 
-.footer{
-  min-height: 1rem;
-  padding-bottom: 0.5rem;
-  align-self: flex-end;
-  justify-self: center;
-}

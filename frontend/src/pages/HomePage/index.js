@@ -9,11 +9,11 @@ const HomePage = () => {
   const [searchResult,] = useSearchResultContext();
 
   return (
-    <div className='home-page'>
+    <div id='home-page'>
       <Header />
       {searchResult.length > 0 && (
         <List
-          className='experiences-list'
+        className='experiences-list'
           data={searchResult}
           render={(experiencia, index) =>
           (<ExperienceSmall className='experience'
@@ -27,11 +27,10 @@ const HomePage = () => {
             startDate={experiencia.fecha_inicial}
             endDate={experiencia.fecha_final}
             id={experiencia.id}
-            thumbnails={experiencia.thumbnails}
-          />)
-
-          } />
-      )}
+            thumbnails={experiencia.thumbnails} />)
+          }
+        />)
+      }
       <Footer />
     </div>
   );

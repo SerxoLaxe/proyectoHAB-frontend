@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import Stars from "../Stars";
 import './style.css'
 
 const ExperienceSmall = ({
@@ -31,10 +32,9 @@ const ExperienceSmall = ({
     <div className='div-experience' key={index} onClick={() => {
       history.push(`/experience/${id}`)
     }}>
-
-      <div className='thumbnail-div'>
-        {thumbs.length > 0 && <img className='thumbnail' src={`${process.env.REACT_APP_BACKEND_URL}/${thumbs[currentThumb]}`} alt='thumbnail' />}
-      </div>
+     {thumbs.length > 0 &&  <div className='thumbnail-div'>
+        <img className='thumbnail' src={`${process.env.REACT_APP_BACKEND_URL}/${thumbs[currentThumb] || 'default-thumbnail.png'}`} alt='thumbnail' />
+      </div>}
       <div className='info-div'>
         <h1 className='title'>{name}</h1>
         <div className='info-box'>
@@ -43,9 +43,9 @@ const ExperienceSmall = ({
           </div>
 
           <div className='right-info-box'>
-            <p>Rating: {rating}</p>
-            <p>Asientos: {seats}</p>
-            <p>{price} euros</p>
+            {rating > 0 && <Stars rating={rating}/>}
+            <p className='seats-experience'>{seats} plazas disponibles</p>
+            <p className='price-experience'>{price}€</p>
           </div>
         </div>
       </div>
@@ -55,3 +55,4 @@ const ExperienceSmall = ({
 }
 
 export default ExperienceSmall;
+

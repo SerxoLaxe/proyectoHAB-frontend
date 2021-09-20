@@ -63,6 +63,7 @@ const SearchBar = () => {
           value='Buscar' />
       </form>
       {filterButtonClicked && <p>Clicaste el botón de filtro</p>}
+      {}
       {error && <FormError error={error} />}
     </div>
   );

@@ -6,22 +6,20 @@ const Avatar = ({ avatar, name, id }) => {
   const [avatarClicked, setAvatarClicked] = useState(false);
 
   return (
-    <>
-    <img
-      className="user_avatar"
-      src={`${process.env.REACT_APP_BACKEND_URL}/${avatar || "defaultAvatar.png"
-        }`}
-      alt={`Avatar de ${name}`}
-      onClick={() => {
-        avatarClicked === true
-          ?
-          setAvatarClicked(false)
-          :
-          setAvatarClicked(true);
+    <div className='avatar-div'
+      onMouseEnter={() => {
+        setAvatarClicked(true);
       }}
-    />
-    {avatarClicked && <AvatarMenu userName={name} id={id}/>}
-    </>
+      onMouseLeave={() => {
+        setAvatarClicked(false);
+      }}>
+      <img
+        className="avatar-img"
+        src={`${process.env.REACT_APP_BACKEND_URL}/${avatar || "defaultAvatar.png"}`}
+        alt={`Avatar de ${name}`}
+      />
+      {avatarClicked && <AvatarMenu userName={name} id={id} />}
+    </div>
   );
 };
 
