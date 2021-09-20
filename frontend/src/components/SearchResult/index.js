@@ -2,6 +2,7 @@ import List from "../List";
 import ExperienceSmall from "../ExperienceSmall";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
+import './style.css';
 
 const SearchResult = () => {
 
@@ -32,9 +33,8 @@ const SearchResult = () => {
       if (res.ok) {
         //setError("");
         const body = await res.json();
-        setSearchResult(body.data)
+        setSearchResult(body.data);
         console.log(body.data);
-
       } else {
         // const error = await res.json();
         //setError(error.message);

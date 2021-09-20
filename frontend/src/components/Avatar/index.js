@@ -15,7 +15,7 @@ const Avatar = ({ avatar, name, id, mode }) => {
       }}>
       <img
         className="avatar-img"
-        src={`${process.env.REACT_APP_BACKEND_URL}/${avatar || "defaultAvatar.jpg"}`}
+        src={`${process.env.REACT_APP_BACKEND_URL}/${avatar}` || `${process.env.REACT_APP_BACKEND_URL}/defaultAvatar.jpg`}
         alt={`Avatar de ${name}`}
       />
       {(avatarClicked &&  mode === 'menu') && <AvatarMenu userName={name} id={id} />}

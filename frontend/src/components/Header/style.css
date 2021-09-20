@@ -10,7 +10,7 @@
 }
 
 
-input[type='button'], input[type='submit'], button{
+.header input[type='button'], input[type='submit'], button{
   cursor: pointer;
   height: 2rem;
   border: 1px solid black;
@@ -23,5 +23,10 @@ input[type='button'], input[type='submit'], button{
 
 .logo{
   cursor: pointer;
+}
+
+.header .three-dots{
+  height: 1rem;
+  
 }
 

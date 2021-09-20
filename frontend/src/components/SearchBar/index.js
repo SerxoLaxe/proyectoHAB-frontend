@@ -1,39 +1,13 @@
 import { useState } from "react";
-import FormError from '../FormError'
+//import FormError from '../FormError'
 import './style.css'
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
   const [filterButtonClicked, setFilterButtonClicked] = useState(false);
-  const [error, setError] = useState('');
+  //const [error, setError] = useState('');
   const history = useHistory();
-
-  /*   async function search(e) {
-      e.preventDefault();
-      const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/experiencias/search?` +
-        new URLSearchParams({
-          texto: searchText
-        }),
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-  
-      if (res.ok) {
-        setError("");
-        const body = await res.json();
-        setSearchResult(body.data)
-  
-      } else {
-        const error = await res.json();
-        setError(error.message);
-      }
-    } */
 
   async function goToSearch(e) {
     e.preventDefault();
@@ -72,7 +46,7 @@ const SearchBar = () => {
       </form>
       {filterButtonClicked && <p>Clicaste el botón de filtro</p>}
       { }
-      {error && <FormError error={error} />}
+     {/*  {error && <FormError error={error} />} */}
     </div>
   );
 }
