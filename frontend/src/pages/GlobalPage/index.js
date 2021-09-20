@@ -1,8 +1,8 @@
 import './style.css';
-import HeaderPlusGrid from '../../components/HeaderPlusGrid';
 import { Route, Switch, useRouteMatch } from 'react-router';
 import UserProfile from '../../components/UserProfile';
 import SearchResult from '../../components/SearchResult';
+import Header from '../../components/Header';
 
 
 const GlobalPage = () => {
@@ -11,8 +11,9 @@ const GlobalPage = () => {
 
   return (
     <div id='global-page'>
-      <HeaderPlusGrid>
-        <Switch>
+      <Header/>
+      <div className='main'>
+      <Switch>
           <Route path={`${path}/user/:id`}>
             <UserProfile />
           </Route>
@@ -20,8 +21,7 @@ const GlobalPage = () => {
             <SearchResult />
           </Route>
         </Switch>
-      </HeaderPlusGrid>
-
+      </div>   
     </div>
   );
 }

@@ -25,6 +25,7 @@ const Header = () => {
     <div className='header'>
       <Logo />
       <SearchBar />
+     <img className='three-dots' src='/three-dots.svg' alt='more'/>
       {userRol === 'admin' &&
         <button type='button' onClick={() => { history.push('/new-experience') }}>Añadir experiencia</button>
       }
@@ -35,7 +36,7 @@ const Header = () => {
         :
         <button type='button' className='right-button' onClick={() => { history.push(`/login`) }}>Iniciar sesión</button>
       }
-      
+
     </div>
   );
 }
