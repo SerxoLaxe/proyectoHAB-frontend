@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 
-const useEntries = () => {
+const useSearch = () => {
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     const fetchEntries = async () => {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/experiencias`);
-
+      const date = new Date();
+      const isoDate = date.toISOString().split('T')[0];
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/experiencias/search?fechaInicial=${isoDate}`);
+      
       if (res.ok) {
         const body = await res.json();
         setSearchResult(body.data);
@@ -19,4 +21,4 @@ const useEntries = () => {
   return [searchResult, setSearchResult];
 };
 
-export default useEntries;
+export default useSearch;

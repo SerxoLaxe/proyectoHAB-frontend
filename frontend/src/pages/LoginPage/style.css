@@ -7,21 +7,10 @@
   gap: 4rem;
 }
 
-.logo {
-	align-self:flex-start;
-  justify-self: left;
-  width: 20rem;
-  margin: 0.5rem;
-}
+
 
 .loginform {
   flex-grow: 1;
   align-self: center;
 }
 
-.footer{
-  min-height: 1rem;
-  padding-bottom: 0.5rem;
-  align-self: flex-end;
-  justify-self: center;
-}

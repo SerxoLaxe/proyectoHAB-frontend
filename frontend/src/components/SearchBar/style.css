@@ -1,8 +1,24 @@
 .search-bar{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  background-color: aqua;
-  gap:2rem;
+  flex-grow: 1;
 }
+
+.search-form{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+input[type='text']{
+  flex-grow: 1;
+  border-radius: 2rem;
+  border: 1px solid black;
+  outline: none;
+  padding-left: 1rem;
+  font-weight: 800;
+}
+
+

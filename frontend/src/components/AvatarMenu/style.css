@@ -1,8 +1,28 @@
 .avatar-menu {
   position: absolute;
-  right: 5rem;
-  top: 0.5rem;
+  top: 4.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: white;
+  background-color: black;
+  width: 10rem;
+  padding: 1rem;
+  z-index: 1;
 }
-.avatar-menu-list{
-  list-style: none;
+
+
+.avatar-menu:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-width: 0 0 1rem 1rem;
+  border-color: transparent transparent  #000000 transparent;
+  top: -1rem;
+  right: 0;
+
 }

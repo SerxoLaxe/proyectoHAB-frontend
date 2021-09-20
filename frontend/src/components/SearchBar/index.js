@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FormError from '../FormError'
 import { useSearchResultContext } from "../../contexts/searchResultContext";
+import './style.css'
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
@@ -62,6 +63,7 @@ const SearchBar = () => {
           value='Buscar' />
       </form>
       {filterButtonClicked && <p>Clicaste el botón de filtro</p>}
+      {}
       {error && <FormError error={error} />}
     </div>
   );
