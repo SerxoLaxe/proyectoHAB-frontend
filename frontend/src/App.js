@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
 import { UserTokenContextProvider } from './contexts/UserTokenContext';
 import GlobalPage from './pages/GlobalPage';
+import RegisterPage from './pages/RegisterPage';
 
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route path='/login'>
             <LoginPage />
+          </Route>
+          <Route path='/register'>
+            <RegisterPage/>
           </Route>
           <Route path='/app'>
             <GlobalPage />
