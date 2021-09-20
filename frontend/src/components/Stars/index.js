@@ -8,8 +8,6 @@ const Stars = ({ rating }) => {
     setStarNumber(rating);
   }, [rating]);
 
-  console.log(starNumber);
-
   return (
     <div className='stars'>
       {[...Array(starNumber)].map((e,i)=>{

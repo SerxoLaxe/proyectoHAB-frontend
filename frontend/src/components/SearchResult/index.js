@@ -3,13 +3,9 @@ import ExperienceSmall from "../ExperienceSmall";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 
-
 const SearchResult = () => {
 
-  const { search } = useLocation();
-  
   const [searchResult, setSearchResult] = useState([]);
-  console.log(search);
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -17,14 +13,13 @@ const SearchResult = () => {
 
   const query = useQuery();
   const queryText = query.get('texto');
-  console.log(query.get('texto'));
 
   useEffect(() => {
     async function fetchSearch() {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/experiencias/search?` +
         new URLSearchParams({
-          texto: query.get('texto'),
+          texto: queryText,
         }),
         {
           method: "GET",
@@ -47,7 +42,7 @@ const SearchResult = () => {
     }
 
     fetchSearch();
-  }, [search]);
+  }, [queryText]);
 
   return (
     <div>
