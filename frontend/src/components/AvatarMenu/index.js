@@ -10,10 +10,10 @@ const AvatarMenu = ({ userName, id }) => {
   return (
     <div className='avatar-menu'>
       <p id='user-name'>{userName}</p>
-      <button onClick={() => { history.push(`/users/${id}`) }}>
+      <button type='button' onClick={() => { history.push(`/users/${id}`) }}>
         Perfil
       </button>
-      <button onClick={() => {
+      <button type='button' onClick={() => {
         if (token) {
           setToken('');
           history.push('/');

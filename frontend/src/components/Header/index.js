@@ -27,13 +27,13 @@ const Header = () => {
       <SearchBar />
 
       {userRol === 'admin' &&
-        <button onClick={() => { history.push('/new-experience') }}>Añadir experiencia</button>}
+        <button type='button' onClick={() => { history.push('/new-experience') }}>Añadir experiencia</button>}
 
       {user.length > 0
         ?
         <Avatar avatar={user[0]?.avatar || null} name={user[0]?.nombre || 'Jane Doe'} id={user[0]?.id} className='right-button' />
         :
-        <button className='right-button' onClick={() => { history.push(`/login`) }}>Iniciar sesión</button>}
+        <button type='button' className='right-button' onClick={() => { history.push(`/login`) }}>Iniciar sesión</button>}
     </div>
   );
 }
