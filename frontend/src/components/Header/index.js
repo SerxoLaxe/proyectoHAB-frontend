@@ -3,9 +3,9 @@ import SearchBar from '../SearchBar'
 import Avatar from '../Avatar'
 import { useUserTokenContext } from '../../contexts/UserTokenContext'
 import useUserProfile from "../../hooks/useUserProfile";
-import './style.css'
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
+import './style.css'
 
 const Header = () => {
 
@@ -25,15 +25,17 @@ const Header = () => {
     <div className='header'>
       <Logo />
       <SearchBar />
-
       {userRol === 'admin' &&
-        <button type='button' onClick={() => { history.push('/new-experience') }}>Añadir experiencia</button>}
+        <button type='button' onClick={() => { history.push('/new-experience') }}>Añadir experiencia</button>
+      }
 
       {user.length > 0
         ?
-        <Avatar avatar={user[0]?.avatar || null} name={user[0]?.nombre || 'Jane Doe'} id={user[0]?.id} className='right-button' />
+        <Avatar avatar={user[0]?.avatar || null} name={user[0]?.nombre || 'Jane Doe'} id={user[0]?.id} className='right-button' mode='menu' />
         :
-        <button type='button' className='right-button' onClick={() => { history.push(`/login`) }}>Iniciar sesión</button>}
+        <button type='button' className='right-button' onClick={() => { history.push(`/login`) }}>Iniciar sesión</button>
+      }
+      
     </div>
   );
 }

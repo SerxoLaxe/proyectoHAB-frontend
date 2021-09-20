@@ -1,0 +1,12 @@
+
+.experiences-list {
+	grid-area: main;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 30rem));
+  grid-auto-flow: dense;
+	grid-gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  align-items: center;
+  justify-content: center;
+}
