@@ -12,7 +12,7 @@
   gap: 0.5rem;
 }
 
-input[type='text']{
+.search-bar input[type='text']{
   flex-grow: 1;
   border-radius: 2rem;
   border: 1px solid black;

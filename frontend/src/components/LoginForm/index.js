@@ -41,7 +41,7 @@ const LoginForm = () => {
 
 
   if (token) {
-    return <Redirect to="/home" />;
+    return <Redirect to="/app" />;
   }
 
   return (

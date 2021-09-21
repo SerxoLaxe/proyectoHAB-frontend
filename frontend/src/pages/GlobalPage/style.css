@@ -1,0 +1,13 @@
+.header{
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: calc(100vw - (100vw - 100%));
+  background-color: white;
+}
+
+.main{
+  top: 5rem;
+  padding-bottom: 5rem;
+  position: relative;
+}
