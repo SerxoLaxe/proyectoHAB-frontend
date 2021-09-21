@@ -7,7 +7,7 @@ import NoResultsMessage from "./NoResultsMessage";
 import RollingTumbleweed from "../../animations/RollingTumbleweed";
 
 const SearchResult = () => {
-
+  const [loading, setLoading] = useState(true);
   const [searchResult, setSearchResult] = useState([]);
   const queryString = useLocation().search;
 
@@ -30,7 +30,7 @@ const SearchResult = () => {
         //setError("");
         const body = await res.json();
         setSearchResult(body.data);
-        console.log(body.data);
+        setLoading(false);
       } else {
         // const error = await res.json();
         //setError(error.message);
@@ -41,6 +41,9 @@ const SearchResult = () => {
   }, [queryString]);
 
   return (
+    <>
+    {!loading 
+    ? 
     <div className='search-result-wrapper'>
       <h1 id='text-searched'>{searchParams.get('texto')?.length > 0 && searchParams.get('texto')}</h1>
       <div id='filters-applied-div'>
@@ -79,6 +82,9 @@ const SearchResult = () => {
         </>
       }
     </div>
+    :
+    <p>Cargando...</p>}
+    </>
   );
 }
 
