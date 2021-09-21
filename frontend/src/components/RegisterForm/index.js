@@ -19,7 +19,7 @@ const RegisterForm = () => {
   }
   return(
     <form onSubmit={register}>
-      <input id='register-email' type='email' onChange={(e)=>{setEmail(e.target.value)}}/>
+      <input id='register-email' type='email' onChange={(e)=>{setEmail(e.target.value)}} autoFocus/>
       <input id='register-password' type='password'onChange={(e)=>{setPassword(e.target.value)}}/>
       <input type='submit'value='Registrarse'/>
     </form>

@@ -55,6 +55,7 @@ const LoginForm = () => {
       name='email'
       value={email}
       placeholder='Email...'
+      autoFocus
       onChange={(e) => {
       setEmail(e.target.value);
     }} />
