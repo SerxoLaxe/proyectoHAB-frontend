@@ -3,25 +3,21 @@ import ExperienceSmall from "../ExperienceSmall";
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import './style.css';
+import NoResultsMessage from "./NoResultsMessage";
+import RollingTumbleweed from "../../animations/RollingTumbleweed";
 
 const SearchResult = () => {
 
   const [searchResult, setSearchResult] = useState([]);
+  const queryString = useLocation().search;
 
-  function useQuery() {
-    return new URLSearchParams(useLocation().search);
-  }
-
-  const query = useQuery();
-  const queryText = query.get('texto');
+  const searchParams = new URLSearchParams(queryString);
 
   useEffect(() => {
     async function fetchSearch() {
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/experiencias/search?` +
-        new URLSearchParams({
-          texto: queryText,
-        }),
+        searchParams,
         {
           method: "GET",
           headers: {
@@ -42,30 +38,45 @@ const SearchResult = () => {
     }
 
     fetchSearch();
-  }, [queryText]);
+  }, [queryString]);
 
   return (
-    <div>
+    <div className='search-result-wrapper'>
+      <h1 id='text-searched'>{searchParams.get('texto')?.length > 0 && searchParams.get('texto')}</h1>
+      <div id='filters-applied-div'>
+        {searchParams.get('precioMinimo')?.length > 0 && <p id='min-price'>{`a partir de ${searchParams.get('precioMinimo')}€`}</p>}
+        {searchParams.get('precioMaximo')?.length > 0 && <p id='min-price'>{`hasta ${searchParams.get('precioMaximo')}€`}</p>}
+        {searchParams.get('fechaInicial')?.length > 0 && <p id='min-price'>{`desde el ${searchParams.get('fechaInicial')}`}</p>}
+        {searchParams.get('fechaFinal')?.length > 0 && <p id='min-price'>{`hasta el ${searchParams.get('fechaFinal')}`}</p>}
+      </div>
+
+
       {searchResult.length > 0
-        &&
-        (<List
-          className='experiences-list'
-          data={searchResult}
-          render={(experiencia, index) =>
-          (<ExperienceSmall className='experience'
-            key={index}
-            name={experiencia.nombre}
-            description={experiencia.descripcion}
-            rating={experiencia.rating}
-            price={experiencia.precio}
-            seats={experiencia.plazas_totales}
-            location={experiencia.ubicacion}
-            startDate={experiencia.fecha_inicial}
-            endDate={experiencia.fecha_final}
-            id={experiencia.id}
-            thumbnails={experiencia.thumbnails} />)
-          }
-        />)
+        ?
+        <>
+          <List
+            className='experiences-grid'
+            data={searchResult}
+            render={(experiencia, index) =>
+            (<ExperienceSmall className='experience'
+              key={index}
+              name={experiencia.nombre}
+              description={experiencia.descripcion}
+              rating={experiencia.rating}
+              price={experiencia.precio}
+              seats={experiencia.plazas_totales}
+              location={experiencia.ubicacion}
+              startDate={experiencia.fecha_inicial}
+              endDate={experiencia.fecha_final}
+              id={experiencia.id}
+              thumbnails={experiencia.thumbnails} />)
+            } />
+        </>
+        :
+        <>
+          <NoResultsMessage className='texts' />
+          <RollingTumbleweed id='tumbleweed-animation' />
+        </>
       }
     </div>
   );
