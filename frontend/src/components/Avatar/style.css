@@ -1,20 +1,13 @@
 .avatar-div{
   display: flex;
   flex-direction: column;
-  justify-self: center;
   align-items: center;
-  position:relative;
 }
 .avatar-img{
-  position: relative;
   width:2.5rem;
   height: 2.5rem;
   border-radius: 50%;
   margin: 0.5rem;
-  transition: all 0.5s ease;
 }
 
-.avatar-img:hover{
-  transform: scale(1.1);
-}
 
