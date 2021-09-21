@@ -5,6 +5,7 @@ import SearchResult from '../../components/SearchResult';
 import Header from '../../components/Header';
 import NotFound from '../../components/NofFound/NotFound';
 import HomeSection from '../../components/HomeSection';
+import ExperienceSection from '../../components/ExperienceSection';
 
 
 const GlobalPage = () => {
@@ -13,20 +14,23 @@ const GlobalPage = () => {
 
   return (
     <div id='global-page'>
-      <Header/>
+      <Header />
       <div className='main'>
-      <Switch>
-        <Route exact path={`${path}/`}>
-          <HomeSection/>
-        </Route>
+        <Switch>
+          <Route exact path={`${path}/`}>
+            <HomeSection />
+          </Route>
           <Route path={`${path}/user/:id`}>
             <UserProfile />
           </Route>
           <Route path={`${path}/search`}>
             <SearchResult />
           </Route>
+          <Route path={`${path}/experience/:id`}>
+            <ExperienceSection />
+          </Route>
         </Switch>
-      </div>   
+      </div>
     </div>
   );
 }
