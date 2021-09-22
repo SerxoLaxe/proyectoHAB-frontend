@@ -32,7 +32,7 @@ const Header = () => {
 
       {user.length > 0
         ?
-        <Avatar avatar={user[0]?.avatar || null} name={user[0]?.nombre || 'Jane Doe'} id={user[0]?.id} className='right-button' mode='menu' />
+        <Avatar avatar={user[0]?.avatar } name={user[0]?.nombre || 'Jane Doe'} id={user[0]?.id} className='right-button' mode='menu' />
         :
         <button type='button' className='right-button' onClick={() => { history.push(`/login`) }}>Iniciar sesión</button>
       }

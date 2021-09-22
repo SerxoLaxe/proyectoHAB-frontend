@@ -6,7 +6,7 @@ import './style.css'
 const EditUserForm = ({ id, data }) => {
   const [userName, setUserName] = useState('');
   const [userBio, setUserBio] = useState('');
-  const [newAvatar, setNewAvatar] = useState(`${process.env.REACT_APP_BACKEND_URL}/${data.avatar}`);
+  const [newAvatar, setNewAvatar] = useState(`${process.env.REACT_APP_BACKEND_URL}/${data?.avatar || 'default-avatar.jpg'} `);
   const [file, setFile] = useState('');
   const [token] = useUserTokenContext();
   const history = useHistory();
@@ -41,7 +41,7 @@ const EditUserForm = ({ id, data }) => {
   return (
     <form onSubmit={saveData} className='edit-user-form'>
       <label htmlFor="avatar">
-        <img className="user-avatar" src={newAvatar} alt={`Nuevo avatar de ${data.nombre}`} />
+        <img className="user-avatar" src={newAvatar} alt={`Nuevo avatar}`} />
       </label>
       <input type='file' id="avatar" style={{ display: "none" }} accept="image/*" onChange={(e) => { handleAvatarChange(e) }} />
       <div className='profile-info-div'>
