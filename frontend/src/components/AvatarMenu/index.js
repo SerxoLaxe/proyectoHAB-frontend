@@ -10,7 +10,7 @@ const AvatarMenu = ({ userName, id }) => {
   return (
     <div className='avatar-menu'>
       <p id='user-name'>{userName}</p>
-      <button type='button' onClick={() => { history.push(`/app/user/${id}`) }}>
+      <button type='button' onClick={() => { history.push(`/app/user?id=${id}`); }}>
         Perfil
       </button>
       <button type='button' onClick={() => {
