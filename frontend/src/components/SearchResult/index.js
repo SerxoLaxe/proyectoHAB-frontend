@@ -10,8 +10,8 @@ const SearchResult = () => {
   const [loading, setLoading] = useState(true);
   const [searchResult, setSearchResult] = useState([]);
   const queryString = useLocation().search;
-
   const searchParams = new URLSearchParams(queryString);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     async function fetchSearch() {
@@ -30,11 +30,12 @@ const SearchResult = () => {
         //setError("");
         const body = await res.json();
         setSearchResult(body.data);
-        setLoading(false);
+        
       } else {
-        // const error = await res.json();
-        //setError(error.message);
+        const error = await res.json();
+        setError(error.message);
       }
+      setLoading(false);
     }
 
     fetchSearch();
@@ -47,13 +48,12 @@ const SearchResult = () => {
     <div className='search-result-wrapper'>
       <h1 id='text-searched'>{searchParams.get('texto')?.length > 0 && searchParams.get('texto')}</h1>
       <div id='filters-applied-div'>
-        {searchParams.get('precioMinimo')?.length > 0 && <p id='min-price'>{`a partir de ${searchParams.get('precioMinimo')}€`}</p>}
+        {searchParams.get('precioMinimo')?.length > 0 && (<p id='min-price'>{`a partir de ${searchParams.get('precioMinimo')}€`}</p>)}
         {searchParams.get('precioMaximo')?.length > 0 && <p id='min-price'>{`hasta ${searchParams.get('precioMaximo')}€`}</p>}
         {searchParams.get('fechaInicial')?.length > 0 && <p id='min-price'>{`desde el ${searchParams.get('fechaInicial')}`}</p>}
         {searchParams.get('fechaFinal')?.length > 0 && <p id='min-price'>{`hasta el ${searchParams.get('fechaFinal')}`}</p>}
       </div>
-
-
+      
       {searchResult.length > 0
         ?
         <>

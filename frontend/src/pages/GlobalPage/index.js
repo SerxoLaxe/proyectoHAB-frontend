@@ -20,7 +20,7 @@ const GlobalPage = () => {
           <Route exact path={`${path}/`}>
             <HomeSection />
           </Route>
-          <Route path={`${path}/user/:id`}>
+          <Route path={`${path}/user`}>
             <UserProfile />
           </Route>
           <Route path={`${path}/search`}>

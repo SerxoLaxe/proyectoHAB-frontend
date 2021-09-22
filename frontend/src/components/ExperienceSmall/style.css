@@ -2,7 +2,7 @@
 	display: grid;
 	grid-auto-rows: auto;
 	height: 30rem;
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .thumbnail-div {
@@ -61,28 +61,26 @@
 	scrollbar-width: none; /* Oculta scrollbar en Firefox */
 }
 
-.right-info-box{
-  background-color: black;
-  border-top: 1px solid white;
-  text-align: center;
+.right-info-box {
+	background-color: black;
+	border-top: 1px solid white;
+	text-align: center;
 }
 
-.right-info-box > .stars{
-  margin: 0.5rem;
-  filter: invert(100%)
+.right-info-box > .stars {
+	margin: 0.5rem;
+	filter: invert(100%);
 }
 
 .right-info-box p {
 	border-top: 1px solid white;
-  color: white;
+	color: white;
 	border-collapse: collapse;
 }
 
-.right-info-box > .price-experience{
-  font-weight: 900;
-  font-size: 2rem;
-  color: white;
-  white-space: nowrap;
+.right-info-box > .price-experience {
+	font-weight: 900;
+	font-size: 2rem;
+	color: white;
+	white-space: nowrap;
 }
-
-
