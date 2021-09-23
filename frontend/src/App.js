@@ -5,13 +5,14 @@ import LandingPage from './pages/LandingPage';
 import { UserTokenContextProvider } from './contexts/UserTokenContext';
 import GlobalPage from './pages/GlobalPage';
 import RegisterPage from './pages/RegisterPage';
+import NotFound from './components/NofFound/NotFound';
 
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <UserTokenContextProvider>
+      <UserTokenContextProvider>
+        <Switch>
           <Route exact path="/">
             <LandingPage />
           </Route>
@@ -19,14 +20,17 @@ function App() {
             <LoginPage />
           </Route>
           <Route path='/register'>
-            <RegisterPage/>
+            <RegisterPage />
           </Route>
           <Route path='/app'>
             <GlobalPage />
           </Route>
-        </UserTokenContextProvider>
-      </Switch>
-    </Router>
+          <Route >
+            <NotFound />
+          </Route>
+        </Switch>
+      </UserTokenContextProvider>
+    </Router >
   );
 }
 

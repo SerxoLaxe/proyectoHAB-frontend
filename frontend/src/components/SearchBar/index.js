@@ -5,18 +5,44 @@ import { useHistory } from "react-router";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
-  const [filterButtonClicked, setFilterButtonClicked] = useState(false);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [minPrice, setMinPrice] = useState('');
+  const [mouseEnteredFilter, setMouseEnteredFilter] = useState(false);
+  const [searchParams, setSearchParams] = useState(new URLSearchParams())
   //const [error, setError] = useState('');
   const history = useHistory();
 
+
   async function goToSearch(e) {
     e.preventDefault();
-    history.push(
-      `/app/search?` + new URLSearchParams({
-        texto: searchText
-      }))
+    if (searchText.length > 0) {
+      searchParams.append('texto', searchText)
     }
-  
+    if (startDate.length > 0) {
+      searchParams.append('fechaInicial', startDate);
+    }
+    if (endDate.length > 0) {
+      searchParams.append('fechaFinal', endDate);
+    }
+    if (minPrice.length > 0) {
+      searchParams.append('precioMinimo', minPrice);
+    }
+    if (maxPrice.length > 0) {
+      searchParams.append('precioMaximo', maxPrice);
+    }
+
+    history.push(`/app/search?` + searchParams);
+    setSearchParams(new URLSearchParams());
+  }
+
+  function reset() {
+    setStartDate('');
+    setEndDate('');
+    setMinPrice('');
+    setMaxPrice('');
+  }
 
   return (
     <div className='search-bar'>
@@ -30,23 +56,42 @@ const SearchBar = () => {
             setSearchText(e.target.value);
           }}
         />
-        <input
-          type='button'
-          value='filtro'
-          onClick={() => {
-            if (filterButtonClicked) {
-              setFilterButtonClicked(false);
-            } else {
-              setFilterButtonClicked(true);
-            }
-          }} />
+        <div className='filter-component'
+          onMouseEnter={() => {
+            setMouseEnteredFilter(true);
+          }}
+          onMouseLeave={() => {
+            setMouseEnteredFilter(false);
+          }} >
+          <input
+            id='filter-button'
+            type='button'
+            value='filtro'
+          />
+          {mouseEnteredFilter && (
+            <div className='search-filter-menu'>
+              <div className='date-div'>
+                <label htmlFor='fechaInicial'>Fecha inicial</label>
+                <input name='fechaInicial' type='date' onChange={(e) => { setStartDate(e.target.value) }} value={startDate} />
+                <label htmlFor='fechaFinal'>Fecha final</label>
+                <input name='fechaFinal' type='date' onChange={(e) => { setEndDate(e.target.value) }} value={endDate} />
+              </div>
+              <div className='price-div'>
+                <label htmlFor='minPrice'>precio mínimo</label>
+                <input name='minPrice' type='number' onChange={(e) => { setMinPrice(e.target.value) }} value={minPrice} />
+                <label htmlFor='maxPrice'>precio máximo</label>
+                <input name='maxPrice' type='number' onChange={(e) => { setMaxPrice(e.target.value) }} value={maxPrice} />
+              </div>
+              <button onClick={reset}>reset</button>
+            </div>
+          )}
+        </div>
         <input
           type='submit'
-          value='Buscar' />
+          value='Buscar'
+        />
       </form>
-      {filterButtonClicked && <p>Clicaste el botón de filtro</p>}
-      { }
-     {/*  {error && <FormError error={error} />} */}
+      {/*  {error && <FormError error={error} />} */}
     </div>
   );
 }

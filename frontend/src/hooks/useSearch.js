@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useSearch = () => {
+const UselatestExperiences = () => {
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
@@ -21,4 +21,4 @@ const useSearch = () => {
   return [searchResult, setSearchResult];
 };
 
-export default useSearch;
+export default UselatestExperiences;

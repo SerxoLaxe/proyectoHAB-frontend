@@ -1,0 +1,72 @@
+.tumbleweed-animation {
+	height: 15rem;
+	width: 100vw;
+  position: absolute;
+}
+
+#animation-background{
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+}
+
+
+.tumbleweed-animation .tumbleweed {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: -5rem;
+	background-size: cover;
+	width: 5rem;
+	height: 5rem;
+	animation: jumping 6s infinite, rolling 6s linear infinite, rotating 6s linear infinite;
+}
+
+@keyframes jumping {
+	0% {
+		top: 4rem;
+		animation-timing-function: ease-in;
+	}
+	15% {
+		top: 10rem;
+		animation-timing-function: ease-out;
+	}
+	30% {
+		top: 1rem;
+		animation-timing-function: ease-in;
+	}
+	45% {
+		top: 6rem;
+		animation-timing-function: ease-out;
+	}
+	65% {
+		top: 1rem;
+		animation-timing-function: ease-in;
+	}
+	85% {
+		top: 9rem;
+		animation-timing-function: ease-in;
+	}
+	100% {
+		top: 0rem;
+		animation-timing-function: ease-in;
+	}
+}
+
+@keyframes rolling {
+	0% {
+		left: -5rem;
+	}
+	100% {
+		left: 100%;
+	}
+}
+
+@keyframes rotating {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
