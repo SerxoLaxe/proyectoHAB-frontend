@@ -1,0 +1,11 @@
+.no-results-wrapper {
+	align-self: flex-start;
+	justify-self: left;
+  margin-top: 10rem;
+}
+
+.no-results-wrapper h1 {
+	font-size: 6rem;
+	color: grey;
+}
+

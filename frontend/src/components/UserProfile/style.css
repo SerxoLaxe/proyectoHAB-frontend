@@ -1,0 +1,14 @@
+.profile-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+}
+
+.profile-info-div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem
+}

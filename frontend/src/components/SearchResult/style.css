@@ -1,0 +1,42 @@
+.search-result-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#filters-applied-div{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-top: 0.5rem;
+}
+
+#filters-applied-div p{
+  color: grey;
+}
+
+#number-of-results{
+  color: grey;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.experiences-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 30rem));
+  grid-auto-flow: dense;
+	grid-gap: 1.5rem;
+  justify-content: left;
+  margin-top: 4rem;
+}
+
+.search-result-wrapper .tumbleweed-animation{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
