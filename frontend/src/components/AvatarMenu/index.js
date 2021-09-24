@@ -1,12 +1,11 @@
 import { useHistory } from 'react-router-dom';
 import { useUserTokenContext } from '../../contexts/UserTokenContext';
-
 import './style.css'
-
 
 const AvatarMenu = ({ userName, id }) => {
   const [token, setToken] = useUserTokenContext();
   const history = useHistory();
+  
   return (
     <div className='avatar-menu'>
       <p id='user-name'>{userName}</p>
