@@ -25,6 +25,9 @@ const GlobalPage = () => {
           <Route path={`${path}/search`}>
             <SearchResult />
           </Route>
+          <Route>
+            <NotFound/>
+          </Route>
         </Switch>
       </div>   
     </div>
