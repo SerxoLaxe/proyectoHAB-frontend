@@ -3,6 +3,7 @@ import decodeTokenData from "../helpers/decodeTokenData";
 
 const useUserProfile = (token) => {
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const decodedToken = decodeTokenData(token);
 
@@ -22,13 +23,14 @@ const useUserProfile = (token) => {
           const body = await res.json();
           setUser(body.data);
         }
+        setLoading(false);
       };
 
       fetchUserProfile();
     }
   }, [decodedToken?.id, token]);
 
-  return [user, setUser];
+  return [user, loading];
 };
 
 export default useUserProfile;
