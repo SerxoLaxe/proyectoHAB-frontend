@@ -1,0 +1,15 @@
+.experiencia {
+  display: flex;
+}
+
+.experiencia_info_izquierda {
+  border: 1px solid black;
+  width: 70%;
+}
+.experiencia_info_derecha {
+  border: 1px solid black;
+  width: 30%;
+}
+
+.experiencia_footer {
+}
