@@ -2,7 +2,6 @@ import "./style.css";
 import { useParams } from "react-router";
 import Experiencia from "../../components/Experiencia";
 import useExperiencia from "../../hooks/useExperiencia";
-import Header from "../../components/Header";
 
 const ExperiencePage = () => {
   const { id } = useParams();
