@@ -15,7 +15,7 @@ const CreateExperienceForm = () => {
   const [error, setError] = useState("");
   const filesInputFotosRef = useRef();
   const [token] = useUserTokenContext();
-  const [history] = useHistory();
+  const history = useHistory();
 
   const createExperience = async (e) => {
     e.preventDefault();
@@ -48,7 +48,8 @@ const CreateExperienceForm = () => {
       );
       if (res.ok) {
         const body = await res.json();
-        history.push(`/experiencias/${body.data.id}`);
+        console.log("body", body);
+        history.push(`/app/experience/${body.id}`);
       } else {
         const error = await res.json();
         throw new Error(error.message);

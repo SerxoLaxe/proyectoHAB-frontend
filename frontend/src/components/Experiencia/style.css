@@ -3,13 +3,12 @@
 }
 
 .experiencia_info_izquierda {
+  align-items: stretch;
   border: 1px solid black;
   width: 70%;
 }
 .experiencia_info_derecha {
+  align-items: center;
   border: 1px solid black;
   width: 30%;
-}
-
-.experiencia_footer {
 }

@@ -26,12 +26,6 @@ function App() {
           <Route path="/app">
             <GlobalPage />
           </Route>
-          <Route path="/experiencias/:id">
-            <ExperiencePage />
-          </Route>
-          <Route path="/create/experiencias">
-            <CreateExperiencePage />
-          </Route>
           <Route>
             <NotFound />
           </Route>

@@ -10,8 +10,6 @@ const ExperiencePage = () => {
 
   return (
     <div className="experience-page">
-      <Header />
-
       {experiencia ? (
         <Experiencia
           nombre={experiencia.nombre}
