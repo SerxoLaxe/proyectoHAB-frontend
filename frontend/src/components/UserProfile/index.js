@@ -5,6 +5,7 @@ import EditUserForm from '../EditUserForm';
 import decodeTokenData from "../../helpers/decodeTokenData";
 import './style.css';
 import FormError from "../FormError";
+import NotFound from '../NotFound'
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -38,6 +39,7 @@ const UserProfile = () => {
         if(decodedToken.id === body.data[0].id){
           setOwnsProfile(true);
         }
+        
 
       } else {
         const error = await res.json();
@@ -50,6 +52,10 @@ const UserProfile = () => {
 
   if (!token) {
     return <Redirect to="/login" />;
+  }
+
+  if ( !loadingProfile && user.activo === 0){
+    return <NotFound/>
   }
 
   return (
