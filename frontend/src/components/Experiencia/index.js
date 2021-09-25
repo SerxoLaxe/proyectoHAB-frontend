@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 //import { UserTokenContext } from "../../contexts/UserTokenContext";
 //TODO: IMPORTANTE, reusar componente de Carousel de Óscar!!!!
+
 const Experiencia = ({
   nombre,
   descripcion,
@@ -15,7 +16,23 @@ const Experiencia = ({
   fotos,
 }) => {
   //const [token] = UserTokenContext();
+  const renderCustomThumbs = () => {
+    const thumbList = fotos.map((image, index) =>
+      <picture key={index}>
+        <source data-srcSet={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`} type="image/jpg" />
+        <img
+          key={image.id}
+          src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`}
+          alt='thumbnail'
+        />
+
+      </picture>
+    );
+    return thumbList;
+  }
+
   console.log(fotos);
+
   return (
     <div className="experiencia">
       <div className="experiencia_cabecera">
@@ -31,10 +48,11 @@ const Experiencia = ({
             showStatus={false}
             showIndicators={false}
             autoPlay={true}
+            renderThumbs={renderCustomThumbs}
           >
             {fotos.map((foto) => (
               <img
-                src={`http://localhost:4000/fotos/${foto.thumbnail}`}
+                src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${foto.foto}`}
                 key={foto.id}
                 alt="Foto de la experiencia"
               />
