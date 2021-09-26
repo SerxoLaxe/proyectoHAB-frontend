@@ -1,5 +1,4 @@
-import { useState } from "react";
-//import FormError from '../FormError'
+import { useRef, useState, useEffect } from "react";
 import './style.css'
 import { useHistory } from "react-router";
 
@@ -9,10 +8,33 @@ const SearchBar = () => {
   const [endDate, setEndDate] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [minPrice, setMinPrice] = useState('');
-  const [mouseEnteredFilter, setMouseEnteredFilter] = useState(false);
+  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const [searchParams, setSearchParams] = useState(new URLSearchParams())
-  //const [error, setError] = useState('');
+  const [error, setError] = useState('');
   const history = useHistory();
+  const node = useRef();
+
+  const handleClickOutside = e => {
+    //console.log("clicking anywhere");
+    if (node.current.contains(e.target)) {
+      // inside click
+      return;
+    }
+    // outside click
+    setFilterMenuOpen(false);
+  };
+
+  useEffect(() => {
+    if (filterMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [filterMenuOpen]);
 
 
   async function goToSearch(e) {
@@ -33,8 +55,13 @@ const SearchBar = () => {
       searchParams.append('precioMaximo', maxPrice);
     }
 
-    history.push(`/app/search?` + searchParams);
-    setSearchParams(new URLSearchParams());
+    if (searchParams.toString().length === 0) {
+      setError('Introduce al menos un parámetro de búsqueda.')
+    } else {
+      setError('');
+      history.push(`/app/search?` + searchParams);
+      setSearchParams(new URLSearchParams());
+    }
   }
 
   function reset() {
@@ -45,31 +72,26 @@ const SearchBar = () => {
   }
 
   return (
-    <div className='search-bar'>
+    <div className='search-bar' ref={node}>
       <form className='search-form' onSubmit={goToSearch}>
         <input
           autoFocus
           type='text'
-          placeholder='Busca aquí tu próxima aventura'
+          placeholder={error ? `${error}` : 'Busca aquí tu proxima aventura'}
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
         <div className='filter-component'
-          onMouseEnter={() => {
-            setMouseEnteredFilter(true);
-          }}
-          onMouseLeave={() => {
-            setMouseEnteredFilter(false);
-          }} >
+          onClick={() => { setFilterMenuOpen(true); }}>
           <input
             id='filter-button'
             type='button'
             value='filtro'
           />
-          {mouseEnteredFilter && (
-            <div className='search-filter-menu'>
+          {filterMenuOpen && (
+            <div className='search-filter-menu' /* onPressEnter={console.log('lalala')} */>
               <div className='date-div'>
                 <label htmlFor='fechaInicial'>Fecha inicial</label>
                 <input name='fechaInicial' type='date' onChange={(e) => { setStartDate(e.target.value) }} value={startDate} />
@@ -82,7 +104,7 @@ const SearchBar = () => {
                 <label htmlFor='maxPrice'>precio máximo</label>
                 <input name='maxPrice' type='number' onChange={(e) => { setMaxPrice(e.target.value) }} value={maxPrice} />
               </div>
-              <button onClick={reset}>reset</button>
+              <button type='button' onClick={reset}>reset</button>
             </div>
           )}
         </div>
@@ -91,7 +113,6 @@ const SearchBar = () => {
           value='Buscar'
         />
       </form>
-      {/*  {error && <FormError error={error} />} */}
     </div>
   );
 }

@@ -30,10 +30,10 @@ const ExperienceSmall = ({
 
   return (
     <div className='div-experience' key={index} onClick={() => {
-      history.push(`/experience/${id}`)
+      history.push(`/app/experience/${id}`)
     }}>
      {thumbs.length > 0 &&  <div className='thumbnail-div'>
-        <img className='thumbnail' src={`${process.env.REACT_APP_BACKEND_URL}/${thumbs[currentThumb] || 'default-thumbnail.png'}`} alt='thumbnail' />
+        <img className='thumbnail' src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${thumbs[currentThumb] || 'default-thumbnail.png'}`} alt='thumbnail' />
       </div>}
       <div className='info-div'>
         <h1 className='title'>{name}</h1>

@@ -1,0 +1,30 @@
+.not-found {
+	width: 100vw;
+  height: 100vh;
+  display: flex;
+  
+}
+
+.error-info-div{
+  display: flex;
+  flex-direction: column;
+  padding-left: 4rem;
+  padding-top: 4rem;
+}
+
+.not-found h1 {
+  color: grey;
+  font-size: 5rem;
+}
+
+.not-found .error-info-div h2{
+  color: rgb(112, 112, 112);
+  font-weight: 400;
+  padding-left: 0.3rem;
+}
+
+.tumbleweed-animation{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}

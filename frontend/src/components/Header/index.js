@@ -27,7 +27,7 @@ const Header = () => {
       <SearchBar />
      <img className='three-dots' src='/three-dots.svg' alt='more'/>
       {userRol === 'admin' &&
-        <button type='button' onClick={() => { history.push('/new-experience') }}>Añadir experiencia</button>
+        <button type='button' onClick={() => { history.push('/app/new-experience') }}>Añadir experiencia</button>
       }
 
       {user.length > 0

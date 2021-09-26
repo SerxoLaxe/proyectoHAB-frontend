@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
 import { useHistory } from 'react-router-dom';
 import './style.css'
@@ -6,7 +6,7 @@ import './style.css'
 const EditUserForm = ({ id, data }) => {
   const [userName, setUserName] = useState('');
   const [userBio, setUserBio] = useState('');
-  const [newAvatar, setNewAvatar] = useState(`${process.env.REACT_APP_BACKEND_URL}/${data.avatar}`);
+  const [newAvatar, setNewAvatar] = useState(`${process.env.REACT_APP_BACKEND_URL}/fotos/${data.avatar}`);
   const [file, setFile] = useState('');
   const [token] = useUserTokenContext();
   const history = useHistory();
@@ -35,6 +35,9 @@ const EditUserForm = ({ id, data }) => {
         body: formData,
       }
     );
+    if(res.ok){
+      console.log('Usuario guardado correctamente');
+    }
     history.go();
   }
 

@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams, Redirect } from "react-router";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
-import useUserProfile from '../../hooks/useUserProfile';
 import EditUserForm from '../EditUserForm';
+import decodeTokenData from "../../helpers/decodeTokenData";
 import './style.css';
+import FormError from "../FormError";
+import NotFound from '../NotFound'
 
 const UserProfile = () => {
   const { id } = useParams();
   const [token] = useUserTokenContext();
-  const [loggedUser] = useUserProfile(token);
   const [user, setUser] = useState();
   const [isEditable, setIsEditable] = useState(false);
-
+  const [owsProfile, setOwnsProfile] = useState(false);
+  const [loadingProfile, setLoadingProfile] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     async function fetchUser() {
@@ -30,12 +33,20 @@ const UserProfile = () => {
         //setError("");
         const body = await res.json();
         setUser(body.data[0]);
-      } else {
-        // const error = await res.json();
-        //setError(error.message);
-      }
-    }
 
+        //Comprobamos que si el usuario logueado se corresponde con el accedido.
+        const decodedToken = decodeTokenData(token);
+        if(decodedToken.id === body.data[0].id){
+          setOwnsProfile(true);
+        }
+        
+
+      } else {
+        const error = await res.json();
+        setError(error.message);
+      }
+      setLoadingProfile(false);
+    }
     fetchUser();
   }, [id, token]);
 
@@ -43,26 +54,37 @@ const UserProfile = () => {
     return <Redirect to="/login" />;
   }
 
+  if ( !loadingProfile && user.activo === 0){
+    return <NotFound/>
+  }
+
   return (
-    <div className='profile-wrapper'>
-
-      {isEditable
+    <>
+      {!loadingProfile
         ?
-        (<>
-          <EditUserForm data={user} />
-          <button onClick={(e) => { setIsEditable(false) }}>Cancelar</button>
-        </>)
-        :
-        <>
-          <img className='user-avatar' src={`${process.env.REACT_APP_BACKEND_URL}/${user?.avatar || 'default-avatar.jpg'}`} alt={`avatar de ${user?.nombre}`} />
-          <div className='profile-info-div'>
-            <h1>{user?.nombre}</h1>
-            <p>{user?.biografia}</p>
-            <button type='button' onClick={(e) => { setIsEditable(true) }}>Editar perfil</button>
-          </div>
-        </>}
+        <div className='profile-wrapper'>
 
-    </div>
+          {isEditable
+            ?
+            (<>
+              <EditUserForm data={user} />
+              <button onClick={(e) => { setIsEditable(false) }}>Cancelar</button>
+            </>)
+            :
+            <>
+              <img className='user-avatar' src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${user?.avatar || 'default-avatar.jpg'}`} alt={`avatar de ${user?.nombre}`} />
+              <div className='profile-info-div'>
+                <h1>{user?.nombre}</h1>
+                <p>{user?.biografia}</p>
+                {owsProfile && <button type='button' onClick={(e) => { setIsEditable(true) }}>Editar perfil</button>}
+              </div>
+            </>}
+            {error.length > 0 && <FormError error={error}/>}
+
+        </div>
+        :
+        <p>Cargando...</p>}
+    </>
   );
 }
 export default UserProfile
