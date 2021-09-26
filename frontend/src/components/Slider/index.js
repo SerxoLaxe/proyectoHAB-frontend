@@ -16,7 +16,7 @@ const Slider = ({ images }) => {
 			className=''>
 				{images.map((image) => (
 					<div key={image.id} className=''>
-						<img style= {{ borderRadius: '0% 20% 20% 20%'}}width={650} height={650}  src={image.image} alt={image.title} />
+						<img width={650} height={650}  src={image.image} alt={image.title} />
 						<p style={{ fontSize: '2rem' }}className=''>{image.title}</p>
 					</div>
 				))}
