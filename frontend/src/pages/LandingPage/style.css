@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;700&display=swap');
+
+   
+.container_carousel_img {
+   
+    grid-area: carousel_img;
+}
+.container_titles  {
+    grid-area: titles;
+    gap: 5rem;
+    margin-left: 2rem;
+}
+.container_searchBar {
+    position:absolute;
+    top: 18rem;
+    right: 8.5rem;
+    width: 30rem;
+}
+
+.searchBar {
+    grid-area: searchBar;
+}   
+
+.container_login_form {
+    display: grid;
+    justify-content: center;
+    position:absolute;
+    top: 32rem;
+    right: 10rem;;
+}
+
+.loginform {
+    grid-area: loginform;
+}
+.container_footer_landing {
+    display: flex;
+    position: absolute;
+    z-index: 100;
+    top: 55rem;
+    }
+    
+.footer_landig {
+    grid-area: footer;
+}
+.container_landing_page {
+    background-image: url(../../assets/image/fondo.jpg);
+    display: grid;
+    grid-template:
+
+    "carousel_img   titles"
+    "carousel_img   searchBar"
+    "carousel_img   loginform" 
+    "footer         footer"/
+     50rem auto;
+    
+    padding: 2rem;
+    }
+

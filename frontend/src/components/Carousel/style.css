@@ -1,0 +1,10 @@
+.carousel_img {
+	width: 100%;
+	min-height: 90vh;
+}
+
+section {
+	width: 100%;
+	min-height: 90vh;
+	position: relative;
+}
