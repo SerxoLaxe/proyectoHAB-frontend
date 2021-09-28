@@ -21,7 +21,7 @@
     grid-area: searchBar;
 }   
 
-.container_login_form {
+.container_register_form {
     display: grid;
     justify-content: center;
     position:absolute;
@@ -29,14 +29,14 @@
     right: 10rem;;
 }
 
-.loginform {
-    grid-area: loginform;
+.registerforma {
+    grid-area: register;
 }
 .container_footer_landing {
     display: flex;
     position: absolute;
     z-index: 100;
-    top: 55rem;
+    top: 52rem;
     }
     
 .footer_landig {
@@ -49,7 +49,7 @@
 
     "carousel_img   titles"
     "carousel_img   searchBar"
-    "carousel_img   loginform" 
+    "carousel_img   register" 
     "footer         footer"/
      50rem auto;
     

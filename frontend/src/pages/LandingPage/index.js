@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../../components/LoginForm";
+import RegisterForm from "../../components/RegisterForm";
 import './style.css';
 import Carousel from "../../components/Carousel";
 import Titles from "../../components/Titles";
@@ -21,8 +21,8 @@ const LandingPage = () => {
             <Titles className='titles'/>
        </div>
 
-      <div className='container_login_form'>
-            <LoginForm className='loginforma'/> 
+      <div className='container_register_form'>
+            <RegisterForm className='registerforma'/> 
       </div>
 
        <div className="container_footer_landing">
