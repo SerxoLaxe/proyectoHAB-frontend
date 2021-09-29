@@ -6,8 +6,6 @@ import { UserTokenContextProvider } from "./contexts/UserTokenContext";
 import GlobalPage from "./pages/GlobalPage";
 import RegisterPage from "./pages/RegisterPage";
 import NotFound from "./components/NofFound/NotFound";
-import ExperiencePage from "./pages/ExperiencePage";
-import CreateExperiencePage from "./pages/CreateExperiencePage";
 
 function App() {
   return (

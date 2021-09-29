@@ -7,8 +7,18 @@
   border: 1px solid black;
   width: 70%;
 }
+
 .experiencia_info_derecha {
   align-items: center;
   border: 1px solid black;
   width: 30%;
+}
+
+.experiencia_titulo_rating {
+  height: 3rem;
+}
+
+.experiencia_titulo {
+  font-size: 2rem;
+  position: absolute;
 }

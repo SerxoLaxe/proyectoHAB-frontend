@@ -1,7 +1,8 @@
 import "./style.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-//import { UserTokenContext } from "../../contexts/UserTokenContext";
+import Stars from "../Stars";
+
 //TODO: IMPORTANTE, reusar componente de Carousel de Óscar!!!!
 const Experiencia = ({
   nombre,
@@ -14,16 +15,17 @@ const Experiencia = ({
   plazas_totales,
   fotos,
 }) => {
-  //const [token] = UserTokenContext();
-  console.log(fotos);
+  console.log("fotos", fotos);
   return (
     <div className="experiencia">
       <div className="experiencia_cabecera">
         <p className="experiencia_avatar_usuario"></p>
       </div>
       <div className="experiencia_info_izquierda">
-        <h2 className="experiencia_titulo">{nombre}</h2>
-        <p className="experiencia_rating">{rating}</p>
+        <div className="experiencia_titulo_rating">
+          <h2 className="experiencia_titulo">{nombre}</h2>
+          {rating > 0 && <Stars rating={rating} />}
+        </div>
 
         {fotos.length > 0 ? (
           <Carousel
@@ -31,6 +33,7 @@ const Experiencia = ({
             showStatus={false}
             showIndicators={false}
             autoPlay={true}
+            showArrows={false}
           >
             {fotos.map((foto) => (
               <img
@@ -46,16 +49,15 @@ const Experiencia = ({
       </div>
 
       <div className="experiencia_info_derecha">
-        <p className="experiencia_fecha_inicial">
-          {new Date(fecha_inicial).toLocaleString()}
-        </p>
-        <p className="experiencia_fecha_final">
-          {new Date(fecha_final).toLocaleString()}
-        </p>
-        <p className="experiencia_ubicacion">{ubicacion}</p>
-        <p className="experiencia_plazas_totales">{plazas_totales}</p>
+        <p className="experiencia_fechas">{`del ${new Date(
+          fecha_inicial
+        ).toLocaleDateString()} al ${new Date(
+          fecha_final
+        ).toLocaleDateString()} en ${ubicacion}`}</p>
+
+        <p className="experiencia_plazas_totales">{`Quedan X plazas - Total: ${plazas_totales} plazas`}</p>
         <p className="experiencia_descripcion">{descripcion}</p>
-        <p className="experiencia_precio">{precio}</p>
+        <p className="experiencia_precio">{`por ${precio} €`}</p>
 
         <button>Reservar</button>
       </div>
