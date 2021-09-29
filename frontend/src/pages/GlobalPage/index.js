@@ -32,7 +32,7 @@ const GlobalPage = () => {
             <SearchResult />
           </Route>
           <Route>
-            <NotFound/>
+            <NotFound />
           </Route>
         </Switch>
       </div>

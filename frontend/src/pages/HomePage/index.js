@@ -2,7 +2,7 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import List from "../../components/List";
 import ExperienceSmall from "../../components/ExperienceSmall";
-import { useSearchResultContext } from "../../contexts/searchResultContext";
+//import { useSearchResultContext } from "../../contexts/searchResultContext";
 import "./style.css";
 
 const HomePage = () => {
