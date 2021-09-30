@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Stars from "../Stars";
 import "./style.css";
@@ -10,21 +9,10 @@ const ExperienceSmall = ({
   price,
   seats,
   id,
-  thumbnails,
+  thumbnails = [],
 }) => {
   const history = useHistory();
-  const [thumbs, setThumbs] = useState([]);
-  const [currentThumb, setCurrentThumb] = useState(0);
-
-  useEffect(() => {
-    setThumbs(() => {
-      if (typeof thumbnails !== "undefined" && thumbnails !== null) {
-        return thumbnails.split(",");
-      }
-      return [];
-    });
-    setCurrentThumb(0);
-  }, [thumbnails]);
+  const thumbs = thumbnails ? thumbnails.split(",") : [];
 
   return (
     <div
@@ -38,7 +26,7 @@ const ExperienceSmall = ({
           <img
             className="thumbnail"
             src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${
-              thumbs[currentThumb] || "default-thumbnail.png"
+              thumbs[0] || "default-thumbnail.png"
             }`}
             alt="thumbnail"
           />

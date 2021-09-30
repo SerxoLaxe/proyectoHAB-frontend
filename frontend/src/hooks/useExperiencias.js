@@ -9,7 +9,7 @@ const useExperiencias = () => {
       ${process.env.REACT_APP_BACKEND_URL}/experiencias`);
       if (res.ok) {
         const body = await res.json();
-        //console.log("body", body);
+        console.log("body", body);
         setExperiencias(body.data);
       }
     };

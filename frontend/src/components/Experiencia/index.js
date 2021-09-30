@@ -3,8 +3,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import Stars from "../Stars";
 
-//TODO: IMPORTANTE, reusar componente de Carousel de Óscar!!!!
-
 const Experiencia = ({
   nombre,
   descripcion,
@@ -15,27 +13,9 @@ const Experiencia = ({
   ubicacion,
   plazas_totales,
   fotos,
+  participantes,
+  id,
 }) => {
-  //const [token] = UserTokenContext();
-  const renderCustomThumbs = () => {
-    const thumbList = fotos.map((image, index) => (
-      <picture key={index}>
-        <source
-          data-srcSet={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`}
-          type="image/jpg"
-        />
-        <img
-          key={image.id}
-          src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`}
-          alt="thumbnail"
-        />
-      </picture>
-    ));
-    return thumbList;
-  };
-
-  console.log(fotos);
-
   return (
     <>
       <div className="experiencia">
@@ -52,7 +32,6 @@ const Experiencia = ({
               showIndicators={false}
               showArrows={false}
               autoPlay={true}
-              renderThumbs={renderCustomThumbs}
             >
               {fotos.map((foto) => (
                 <img
@@ -79,15 +58,34 @@ const Experiencia = ({
             <p className="experiencia_plazas_totales">{`${plazas_totales} plazas en total`}</p>
           </div>
           <p className="experiencia_descripcion">{descripcion}</p>
-          <p className="experiencia_precio">
+          <div className="experiencia_precio">
             <h5>por</h5>
             <h2>{`${precio} €`}</h2>
             <button>Reservar</button>
-          </p>
+          </div>
         </div>
       </div>
-      <footer className="experiencia_usuarios_participantes">
+      <footer className="footer_experiencia">
         <p>Reserva plaza y acompaña en esta experiencia a...</p>
+        <div className="experiencia_participantes">
+          {participantes.length > 0 ? (
+            <ul>
+              {participantes.map((participante) => (
+                <li key={participantes.id} className="experiencia_participante">
+                  {participante.avatar ? (
+                    <img
+                      src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${participante.avatar}`}
+                      alt="avatar_participante"
+                    />
+                  ) : null}
+                  <p className="nombre_participante">{participante.nombre}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No hay usuarios participantes</p>
+          )}
+        </div>
       </footer>
     </>
   );

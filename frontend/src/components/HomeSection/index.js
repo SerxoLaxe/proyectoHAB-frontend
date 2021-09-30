@@ -6,7 +6,7 @@ import useExperiencias from "../../hooks/useExperiencias";
 
 const HomeSection = () => {
   const [experiencias] = useExperiencias();
-  console.log("experiencias", experiencias);
+
   return (
     <div className="home_section">
       <h1>HOME SECTION</h1>
@@ -27,7 +27,7 @@ const HomeSection = () => {
               startDate={experiencia.fecha_inicial}
               endDate={experiencia.fecha_final}
               id={experiencia.id}
-              fotos={experiencia.fotos}
+              thumbnails={experiencia.thumbnails}
             />
           )}
         />
