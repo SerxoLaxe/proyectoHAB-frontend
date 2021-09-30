@@ -5,7 +5,7 @@ const Logo = () => {
   const history = useHistory();
   return (
       <img className='logo' alt='logo' src='/logo.svg' onClick={()=>{
-        history.push('/');
+        history.push('/app');
       }}/>
   );
 }

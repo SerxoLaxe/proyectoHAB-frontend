@@ -1,34 +1,51 @@
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Stars from "../Stars";
 import "./style.css";
-import SliderFotos from "../SliderFotos";
 
 const ExperienceSmall = ({
-  index,
   name,
   description,
   rating,
   price,
   seats,
   id,
-  fotos,
+  thumbnails,
 }) => {
   const history = useHistory();
+  const [thumbs, setThumbs] = useState([]);
+  const [currentThumb, setCurrentThumb] = useState(0);
+
+  useEffect(() => {
+    setThumbs(() => {
+      if (typeof thumbnails !== "undefined" && thumbnails !== null) {
+        return thumbnails.split(",");
+      }
+      return [];
+    });
+    setCurrentThumb(0);
+  }, [thumbnails]);
 
   return (
     <div
       className="div-experience"
-      key={index}
       onClick={() => {
-        history.push(`app/experience/${id}`);
+        history.push(`/app/experience/${id}`);
       }}
     >
-      {fotos.length > 0 && (
-        <SliderFotos experienceFotos={fotos} className="thumbnail-div" />
+      {thumbs.length > 0 && (
+        <div className="thumbnail-div">
+          <img
+            className="thumbnail"
+            src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${
+              thumbs[currentThumb] || "default-thumbnail.png"
+            }`}
+            alt="thumbnail"
+          />
+        </div>
       )}
       <div className="info-div">
         <h1 className="title">{name}</h1>
-
         <div className="info-box">
           <div className="left-info-box">
             <p className="description">{description}</p>

@@ -1,8 +1,8 @@
 import "./style.css";
 import List from "../List";
-import useExperiencias from "../../hooks/useExperiencias";
 
 import ExperienceSmall from "../ExperienceSmall";
+import useExperiencias from "../../hooks/useExperiencias";
 
 const HomeSection = () => {
   const [experiencias] = useExperiencias();

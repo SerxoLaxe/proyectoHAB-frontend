@@ -1,24 +1,74 @@
 .experiencia {
   display: flex;
+  padding-left: 2rem;
+  justify-content: center;
 }
 
 .experiencia_info_izquierda {
   align-items: stretch;
-  border: 1px solid black;
-  width: 70%;
+
+  width: 60%;
 }
 
-.experiencia_info_derecha {
-  align-items: center;
-  border: 1px solid black;
-  width: 30%;
-}
-
-.experiencia_titulo_rating {
-  height: 3rem;
+.experiencia_titulo .stars {
+  position: absolute;
+  left: 50%;
 }
 
 .experiencia_titulo {
   font-size: 2rem;
-  position: absolute;
+}
+
+.experiencia_info_derecha {
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.9rem;
+  width: 30%;
+}
+.experiencia_fechas {
+  padding-top: 1rem;
+  align-items: center;
+
+  gap: 1rem;
+}
+.experiencia_plazas {
+  margin-top: 1rem;
+  display: flex;
+  height: 2rem;
+  font-weight: bold;
+}
+.experiencia_descripcion {
+  padding-top: 1rem;
+}
+.experiencia_plazas_disponibles {
+  margin-right: 0.3rem;
+  flex-wrap: nowrap;
+
+  width: 60%;
+  background-color: black;
+  color: white;
+  align-items: center;
+}
+.experiencia_plazas_totales {
+  width: 40%;
+  background-color: black;
+  font-size: 0.7rem;
+  color: white;
+  align-items: center;
+}
+.experiencia_precio {
+  display: flex;
+  font-size: 2rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  position: relative;
+  margin-right: 0;
+}
+.experiencia_usuarios_participantes {
+  text-align: center;
 }
