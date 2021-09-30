@@ -19,7 +19,7 @@ const Experiencia = ({
   const renderCustomThumbs = () => {
     const thumbList = fotos.map((image, index) =>
       <picture key={index}>
-        <source data-srcSet={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`} type="image/jpg" />
+        <source data-srcset={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`} type="image/jpg" />
         <img
           key={image.id}
           src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`}
@@ -30,8 +30,6 @@ const Experiencia = ({
     );
     return thumbList;
   }
-
-  console.log(fotos);
 
   return (
     <div className="experiencia">

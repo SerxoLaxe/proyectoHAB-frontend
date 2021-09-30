@@ -33,7 +33,6 @@ const SearchResult = () => {
         //setError("");
         const body = await res.json();
         setSearchResult(body.data);
-        console.log(body.data);
       } else {
         // const error = await res.json();
         //setError(error.message);
@@ -64,17 +63,13 @@ const SearchResult = () => {
               <List
                 className='experiences-grid'
                 data={searchResult}
-                render={(experiencia, index) =>
-                (<ExperienceSmall className='experience'
-                  key={index}
+                render={(experiencia) =>
+                (<ExperienceSmall className='experience' key={experiencia.id}
                   name={experiencia.nombre}
                   description={experiencia.descripcion}
                   rating={experiencia.rating}
                   price={experiencia.precio}
                   seats={experiencia.plazas_totales}
-                  location={experiencia.ubicacion}
-                  startDate={experiencia.fecha_inicial}
-                  endDate={experiencia.fecha_final}
                   id={experiencia.id}
                   thumbnails={experiencia.thumbnails} />)
                 } />

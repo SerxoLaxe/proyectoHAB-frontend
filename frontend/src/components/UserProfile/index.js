@@ -10,12 +10,13 @@ import NotFound from '../NotFound'
 const UserProfile = () => {
   const { id } = useParams();
   const [token] = useUserTokenContext();
-  const [user, setUser] = useState();
+  const [user, setUser] = useState([]);
   const [isEditable, setIsEditable] = useState(false);
   const [owsProfile, setOwnsProfile] = useState(false);
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [error, setError] = useState('');
 
+  // FIXME - Esto debería de ser un hook, al menos el fetch.
   useEffect(() => {
     async function fetchUser() {
       const res = await fetch(
@@ -54,7 +55,7 @@ const UserProfile = () => {
     return <Redirect to="/login" />;
   }
 
-  if ( !loadingProfile && user.activo === 0){
+  if ( !loadingProfile && user.length > 0 && user.activo === 0){
     return <NotFound/>
   }
 

@@ -4,7 +4,6 @@ import Stars from "../Stars";
 import './style.css'
 
 const ExperienceSmall = ({
-  index,
   name,
   description,
   rating,
@@ -29,7 +28,7 @@ const ExperienceSmall = ({
 
 
   return (
-    <div className='div-experience' key={index} onClick={() => {
+    <div className='div-experience' onClick={() => {
       history.push(`/app/experience/${id}`)
     }}>
      {thumbs.length > 0 &&  <div className='thumbnail-div'>
