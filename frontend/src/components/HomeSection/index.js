@@ -1,6 +1,5 @@
-import "./style.css";
+import useProximasExperiencias from "../../hooks/useProximasExperiencias";
 import List from "../List";
-
 import ExperienceSmall from "../ExperienceSmall";
 import useProximasExperiencias from "../../hooks/useProximasExperiencias";
 
@@ -8,32 +7,37 @@ const HomeSection = () => {
   const [experiencias] = useProximasExperiencias();
 
   return (
-    <div className="home_section">
-      <h1>HOME SECTION</h1>
-      {experiencias ? (
-        <List
-          className="experiences-grid"
-          data={experiencias}
-          render={(experiencia) => (
-            <ExperienceSmall
-              className="experience"
-              key={experiencia.id}
-              name={experiencia.nombre}
-              description={experiencia.descripcion}
-              rating={experiencia.rating}
-              price={experiencia.precio}
-              seats={experiencia.plazas_totales}
-              location={experiencia.ubicacion}
-              startDate={experiencia.fecha_inicial}
-              endDate={experiencia.fecha_final}
-              id={experiencia.id}
-              thumbnails={experiencia.thumbnails}
-            />
-          )}
-        />
-      ) : (
-        <p>Cargando...</p>
-      )}
+    <div>
+      <div className="search-result-wrapper">
+        <h2>Próximos eventos</h2>
+        {!loadingExperiencias ? (
+          <>
+            {experiencias.length > 0 ? (
+              <List
+                className="experiences-grid"
+                data={experiencias}
+                render={(experiencia) => (
+                  <ExperienceSmall
+                    className="experience"
+                    key={experiencia.id}
+                    name={experiencia.nombre}
+                    description={experiencia.descripcion}
+                    rating={experiencia.rating}
+                    price={experiencia.precio}
+                    seats={experiencia.plazas_totales}
+                    id={experiencia.id}
+                    thumbnails={experiencia.thumbnails}
+                  />
+                )}
+              />
+            ) : (
+              <p>No hay resultados</p>
+            )}
+          </>
+        ) : (
+          <p>Cargango ...</p>
+        )}
+      </div>
     </div>
   );
 };
