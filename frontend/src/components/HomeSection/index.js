@@ -1,10 +1,9 @@
 import useProximasExperiencias from "../../hooks/useProximasExperiencias";
 import List from "../List";
 import ExperienceSmall from "../ExperienceSmall";
-import useProximasExperiencias from "../../hooks/useProximasExperiencias";
 
 const HomeSection = () => {
-  const [experiencias] = useProximasExperiencias();
+  const [experiencias, loadingExperiencias] = useProximasExperiencias();
 
   return (
     <div>

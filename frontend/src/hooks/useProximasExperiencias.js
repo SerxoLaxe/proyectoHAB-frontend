@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const useProximasExperiencias = () => {
   const [experiencias, setExperiencias] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fechaActual = new Date();
@@ -20,11 +21,12 @@ const useProximasExperiencias = () => {
 
         setExperiencias(body.data);
       }
+      setLoading(false);
     };
     fetchExperiencias();
   }, []);
 
-  return [experiencias, setExperiencias];
+  return [experiencias, loading];
 };
 
 export default useProximasExperiencias;
