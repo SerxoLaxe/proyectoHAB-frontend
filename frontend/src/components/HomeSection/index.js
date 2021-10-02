@@ -2,10 +2,10 @@ import "./style.css";
 import List from "../List";
 
 import ExperienceSmall from "../ExperienceSmall";
-import useExperiencias from "../../hooks/useExperiencias";
+import useProximasExperiencias from "../../hooks/useProximasExperiencias";
 
 const HomeSection = () => {
-  const [experiencias] = useExperiencias();
+  const [experiencias] = useProximasExperiencias();
 
   return (
     <div className="home_section">

@@ -52,7 +52,6 @@ const CreateExperienceForm = () => {
       );
       if (res.ok) {
         const body = await res.json();
-        console.log("body", body);
         history.push(`/app/experience/${body.id}`);
       } else {
         const error = await res.json();

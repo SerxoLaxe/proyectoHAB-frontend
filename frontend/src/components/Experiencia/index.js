@@ -71,7 +71,7 @@ const Experiencia = ({
           {participantes.length > 0 ? (
             <ul>
               {participantes.map((participante) => (
-                <li key={participantes.id} className="experiencia_participante">
+                <li key={participante.id} className="experiencia_participante">
                   {participante.avatar ? (
                     <img
                       src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${participante.avatar}`}

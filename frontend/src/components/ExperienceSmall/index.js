@@ -9,7 +9,7 @@ const ExperienceSmall = ({
   price,
   seats,
   id,
-  thumbnails = [],
+  thumbnails,
 }) => {
   const history = useHistory();
   const thumbs = thumbnails ? thumbnails.split(",") : [];
