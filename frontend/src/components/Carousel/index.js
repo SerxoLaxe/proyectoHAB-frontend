@@ -1,47 +1,43 @@
-import './style.css';
-import React from 'react'
-import Slider from '../Slider'
-
+import "./style.css";
+import React, { useEffect, useState } from "react";
+import Slider from "../Slider";
+import useProximasExperiencias from "../../hooks/useProximasExperiencias";
 
 function Carousel() {
-	const images = [
-		{
-			id: '1',
-			title: 'Awesome forest',
-			image:
-				'https://cdn.pixabay.com/photo/2020/11/09/15/12/trail-5726987_960_720.jpg',
-		},
-		{
-			id: '2',
-			title: 'A litle bird.',
-			image:
-				'https://cdn.pixabay.com/photo/2011/09/27/18/52/bird-9950_960_720.jpg',
-		},
-		{
-			id: '3',
-			title: 'The best friend.',
-			image:
-				'https://cdn.pixabay.com/photo/2017/12/27/14/02/friends-3042751_960_720.jpg',
-		},
-		{
-			id: '4',
-			title: 'Beautiful desert.',
-			image:
-				'https://cdn.pixabay.com/photo/2016/11/21/17/44/arches-national-park-1846759_960_720.jpg',
-		},
-		{
-			id: '5',
-			title: 'Harley Davidson motorcycle.',
-			image:
-				'https://cdn.pixabay.com/photo/2018/10/26/22/55/harley-davidson-3775527_960_720.jpg',
-		},
-	]
+  const [experiencias, loadingExperiencias] = useProximasExperiencias();
+  const [data, setData] = useState([]);
 
-	return (
-		<div className='carousel'>
-			<Slider images={images} />
-		</div>
-	)
+  useEffect(() => {
+    function getData() {
+      if (!loadingExperiencias) {
+        console.log("experiencias", experiencias);
+        const data = experiencias.map((experiencia) => {
+          const image = experiencia.thumbnails
+            .split(",")[0]
+            .replace("-thumbnail", "");
+          return {
+            image: `${process.env.REACT_APP_BACKEND_URL}/fotos/${image}`,
+            id: experiencia.id,
+            title: experiencia.nombre,
+            description: experiencia.descripcion,
+            rating: experiencia.rating,
+          };
+        });
+        console.log("data", data);
+		setData(data)
+      }
+    }
+    getData();
+  }, [loadingExperiencias]);
+
+  
+
+  return (
+    <div className="carousel">
+		{!loadingExperiencias &&  <Slider images={data} />}
+     
+    </div>
+  );
 }
 
-export default Carousel
+export default Carousel;
