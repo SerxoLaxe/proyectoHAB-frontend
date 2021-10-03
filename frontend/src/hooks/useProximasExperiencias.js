@@ -14,7 +14,7 @@ const useProximasExperiencias = () => {
     const fechaFinal = new Date(fechaInicialDate);
 
     //Creamos otra fecha y le añadimos 30 días o el tiempo pertinente.
-    fechaFinal.setDate(fechaInicialDate.getDate() + 30);
+    fechaFinal.setDate(fechaInicialDate.getDate() + 365);
     const fechaInicialString = fechaInicialDate.toISOString().split('T')[0];
     const fechaFinalString = fechaFinal.toISOString().split('T')[0];
     queryParams.append('fechaInicial', fechaInicialString);
