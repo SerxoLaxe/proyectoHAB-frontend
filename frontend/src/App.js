@@ -6,6 +6,7 @@ import { UserTokenContextProvider } from "./contexts/UserTokenContext";
 import GlobalPage from "./pages/GlobalPage";
 import RegisterPage from "./pages/RegisterPage";
 import NotFound from "./components/NotFound";
+import AboutPage from "./pages/AbouPage";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/register">
             <RegisterPage />
+          </Route>
+          <Route path='/about'>
+            <AboutPage/>
           </Route>
           <Route path="/app">
             <GlobalPage />
