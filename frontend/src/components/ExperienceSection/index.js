@@ -2,7 +2,8 @@ import "./style.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { useParams, useHistory } from 'react-router-dom'
-import Stars from "../Stars";
+import ReactStars from 'react-rating-stars-component';
+import Stars from '../Stars';
 import useExperiencia from "../../hooks/useExperiencia";
 import useUsersPart from "../../hooks/useUsersPart";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
@@ -21,7 +22,7 @@ const ExperienceSection = () => {
   const history = useHistory();
 
   useEffect(() => {
-    // Esta función marca e estado de la reserva.
+    // Esta función marca el estado de la reserva.
     function setReservationState() {
 
       // Manejamos la identidad del usuario logueado.
@@ -38,8 +39,7 @@ const ExperienceSection = () => {
             if (experienceEndingDate <= new Date()) {
               setUserReservation('finished');
               console.log('experiencia terminada, ahora puedes puntuarla');
-            } 
-            if (experienceStartDate <= new Date() && experienceEndingDate >= new Date()) {
+            } else if (experienceStartDate <= new Date() && experienceEndingDate >= new Date()) {
               setReservationState('underway')
               console.log('Experiencia en curso, ya no se puede cancelar la reserva');
             } else {
@@ -116,6 +116,11 @@ const ExperienceSection = () => {
     }
   }
 
+  function handleRatingChange(newRating) {
+    console.log(newRating);
+    setUserRated(newRating);
+  }
+
   return (
     <>
       {!loadingExperiencia && <div className="experience-wrapper">
@@ -155,13 +160,12 @@ const ExperienceSection = () => {
             ).toLocaleDateString()} en ${experiencia.ubicacion}`}</p>
 
             <div className="experiencia_plazas">
-              <p className="experiencia_plazas_disponibles">{`Quedan ${experiencia.plazas_totales} plazas`}</p>
-              <p className="experiencia_plazas_totales">{`${experiencia.plazas_totales} plazas en total`}</p>
+              <p className="experiencia_plazas_disponibles">{`${experiencia.plazas_totales - participantes.length} plazas cubiertas`}</p>
+              <p className="experiencia_plazas_totales">{`de ${experiencia.plazas_totales} plazas en total`}</p>
             </div>
             <p className="experiencia_descripcion">{experiencia.descripcion}</p>
             <div className="experiencia_precio">
-              <h5>por</h5>
-              <h2>{`${experiencia.precio} €`}</h2>
+              <h2>por {`${experiencia.precio} €`}</h2>
             </div>
 
             {loggedUser
@@ -171,13 +175,12 @@ const ExperienceSection = () => {
                   &&
                   <>
                     <button>Editar</button>
-                    <button onClick={() => { eliminarExperiencia() }}>Eliminar</button>
+                    <button onClick={eliminarExperiencia}>Eliminar</button>
                   </>}
-                <>
-                  {userReservation === 'pending' && <button onClick={() => { cancelarReserva() }}>Cancelar reserva</button>}
-                  {userReservation === '' && <button onClick={() => { reservarExperiencia() }}>Reservar</button>}
-                </>
-
+                {userReservation === 'pending' && <button onClick={cancelarReserva}>Cancelar reserva</button>}
+                {userReservation === '' && <button onClick={reservarExperiencia}>Reservar</button>}
+                {userReservation === 'finished' &&
+                  <ReactStars activeColor='black' size={40} onChange={handleRatingChange} />}
               </>
               :
               <p>Inicia sesión para poder realizar tu reserva.</p>

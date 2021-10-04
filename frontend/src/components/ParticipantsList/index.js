@@ -24,7 +24,12 @@ const ParticipantsList = ({ participants, loggedUserId , userReservationState}) 
             })}
           </ul>
           :
-          <p>Por ahora eres el único que está apuntado.</p>}
+          <>
+          {userReservationState === 'finished' && <p>Parece que fuiste el único participante</p>}
+          {userReservationState === 'pending' && <p>Por ahora eres el único que está apuntado.</p>}
+          </>
+          }
+          
       </>
    
   )
