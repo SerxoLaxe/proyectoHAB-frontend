@@ -3,8 +3,9 @@ import { UserTokenContext } from "../contexts/UserTokenContext";
 
 const useUsersPart = (id) => {
   const [token] = useContext(UserTokenContext);
-
   const [usersPart, setUsersPart] = useState([]);
+const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchReservas = async () => {
       const res = await fetch(
@@ -19,11 +20,12 @@ const useUsersPart = (id) => {
         const body = await res.json();
         setUsersPart(body.data);
       }
+      setLoading(false)
     };
     if (token) fetchReservas();
   }, [id, token]);
 
-  return [usersPart, setUsersPart];
+  return [usersPart, loading];
 };
 
 export default useUsersPart;

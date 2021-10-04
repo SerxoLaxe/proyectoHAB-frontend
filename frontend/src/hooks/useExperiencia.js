@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 const useExperiencia = (id) => {
   const [experiencia, setExperiencia] = useState(null);
+  const [loading,setLoading]= useState(true);
 
   useEffect(() => {
     const fetchExperiencia = async () => {
@@ -14,11 +15,12 @@ const useExperiencia = (id) => {
 
         setExperiencia(body.data);
       }
+      setLoading(false);
     };
     fetchExperiencia();
   }, [id]);
 
-  return [experiencia, setExperiencia];
+  return [experiencia, loading];
 };
 
 export default useExperiencia;

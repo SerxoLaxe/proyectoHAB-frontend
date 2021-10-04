@@ -1,6 +1,6 @@
 import "./style.css";
 import { useParams } from "react-router";
-import Experiencia from "../../components/Experiencia";
+import Experiencia from "../../components/ExperienceSection";
 import useExperiencia from "../../hooks/useExperiencia";
 import useUsersPart from "../../hooks/useUsersPart";
 

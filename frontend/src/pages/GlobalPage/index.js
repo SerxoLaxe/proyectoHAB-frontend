@@ -7,6 +7,7 @@ import NotFound from "../../components/NotFound";
 import HomeSection from "../../components/HomeSection";
 import CreateExperiencePage from "../CreateExperiencePage";
 import ExperiencePage from "../ExperiencePage";
+import ExperienceSection from "../../components/ExperienceSection";
 
 const GlobalPage = () => {
   const { path } = useRouteMatch();
@@ -23,7 +24,7 @@ const GlobalPage = () => {
             <UserProfile />
           </Route>
           <Route path={`${path}/experience/:id`}>
-            <ExperiencePage />
+            <ExperienceSection/>
           </Route>
           <Route path={`${path}/new-experience`}>
             <CreateExperiencePage />
