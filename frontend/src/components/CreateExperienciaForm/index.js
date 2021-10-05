@@ -2,8 +2,8 @@ import "./style.css";
 import { useState, useRef } from "react";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
 import { useHistory } from "react-router";
-
 import FormError from "../FormError";
+
 const CreateExperienceForm = () => {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
@@ -22,6 +22,10 @@ const CreateExperienceForm = () => {
     try {
       setError("");
       const fotos = filesInputFotosRef.current.files;
+
+      if (fotos.length > 4) {
+        throw new Error("Solo se pueden escoger 4 fotos");
+      }
 
       //para las fotos tenemos que crear un form-data
       const payload = new FormData();
@@ -48,7 +52,6 @@ const CreateExperienceForm = () => {
       );
       if (res.ok) {
         const body = await res.json();
-        console.log("body", body);
         history.push(`/app/experience/${body.id}`);
       } else {
         const error = await res.json();
