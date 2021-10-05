@@ -1,76 +1,36 @@
-.experiencia {
-  display: flex;
-  padding-left: 2rem;
-  justify-content: center;
-}
-
-.experiencia_info_izquierda {
-  align-items: stretch;
-
-  width: 60%;
-}
-
-.experiencia_titulo .stars {
-  position: absolute;
-  left: 50%;
-}
-
-.experiencia_titulo {
-  font-size: 2rem;
-}
-
-.experiencia_info_derecha {
-  margin: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 0.9rem;
-  width: 30%;
-}
-.experiencia_fechas {
-  padding-top: 1rem;
-  align-items: center;
-
+.experience-section-wrapper{
+  width: 100%;
+  height: 80vh;
+  padding: 2rem;
   gap: 1rem;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-template-rows: 1fr 9fr auto;
+  grid-template-areas: 
+  'title .'
+  'carrousel info'
+  'users users';
 }
-.experiencia_plazas {
-  margin-top: 1rem;
+.experience-title{
+  grid-area: title;
   display: flex;
-  height: 2rem;
-  font-weight: bold;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.experiencia_descripcion {
-  padding-top: 1rem;
+.experience-carrousel{
+  grid-area: carrousel;
 }
-.experiencia_plazas_disponibles {
-  margin-right: 0.3rem;
-  flex-wrap: nowrap;
-
-  width: 60%;
-  background-color: black;
-  color: white;
-  align-items: center;
+.experience-image{
+  object-fit:cover;
+  object-position:center;
+  max-height: 60vh;
 }
-.experiencia_plazas_totales {
-  width: 40%;
-  background-color: black;
-  font-size: 0.7rem;
-  color: white;
-  align-items: center;
+.experience-info{
+  grid-area: info;
 }
-.experiencia_precio {
-  display: flex;
-  font-size: 2rem;
-  justify-content: space-around;
-  align-items: center;
+.experience-participants{
+  grid-area: users;
 }
 
-button {
-  position: relative;
-  margin-right: 0;
-}
 
-.experiencia_participante img {
-  width: 3rem;
-  border-radius: 50%;
-}
+

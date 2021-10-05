@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-import Stars from "../Stars";
+import ReactStars from 'react-rating-stars-component';
 import "./style.css";
 
 const ExperienceSmall = ({
@@ -40,7 +40,7 @@ const ExperienceSmall = ({
           </div>
 
           <div className="right-info-box">
-            {rating > 0 && <Stars rating={rating} />}
+            {rating > 0 && <ReactStars value={rating} activeColor='white' count={4} size={30} edit={false}/>}
             <p className="seats-experience">{seats} plazas disponibles</p>
             <p className="price-experience">{price}€</p>
           </div>

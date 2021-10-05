@@ -6,7 +6,6 @@ import useUserProfile from "../../hooks/useUserProfile";
 import { useHistory } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   const [token] = useUserTokenContext();
