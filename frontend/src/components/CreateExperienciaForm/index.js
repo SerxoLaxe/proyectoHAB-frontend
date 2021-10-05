@@ -4,6 +4,7 @@ import { useUserTokenContext } from "../../contexts/UserTokenContext";
 import { useHistory } from "react-router";
 import FormError from "../FormError";
 import List from "../List";
+import lodash from 'lodash';
 
 const CreateExperienceForm = (
   {
@@ -106,18 +107,15 @@ const CreateExperienceForm = (
   }
 
   function deleteImage(e) {
-    const imageIndex = e.target.getAttribute('index');
-    console.log('index to delete:', imageIndex);
+    const imageId = e.target.getAttribute('image-id');
+    console.log('index to delete:', imageId);
     const imagesCopy = [...images];
     console.log('imagesCopy:', imagesCopy);
-    const filteredImages = images.filter((image, index, arr) => {
-      console.log(index, parseInt(imageIndex));
-      return (index !== parseInt(imageIndex) && image)
-    });
+    const filteredImages = lodash.remove(images, (element)=>{console.log(element.id, imageId); return element.id !== parseInt(imageId)});
     console.log('filteredImages', filteredImages);
-    setImagesUpdated(false);
+    //setImagesUpdated(false);
     setImages(filteredImages);
-    setImagesUpdated(true);
+   // setImagesUpdated(true);
     
   }
 
@@ -224,7 +222,7 @@ const CreateExperienceForm = (
         <button>Cancelar</button>
       </form>
       {error && <FormError error={error} />}
-      {edit && imagesUpdated && pictures.length > 0 &&
+      {edit && pictures.length > 0 &&
         <>
           <p>Hay {pictures.length} imagenes</p>
           <List
