@@ -9,6 +9,7 @@ import lodash from 'lodash';
 const CreateExperienceForm = (
   {
     edit,
+    id,
     name,
     description,
     startDate,
@@ -54,8 +55,7 @@ const CreateExperienceForm = (
     location,
     totalSeats,
     pictures
-  ])
-  console.log(pictures);
+  ]);
 
   const createExperience = async (e) => {
     e.preventDefault();
@@ -114,18 +114,81 @@ const CreateExperienceForm = (
         });
       if (!res.ok) {
         const error = await res.json();
+        setError(error.messagen);
+      }
+    }
+
+    async function fetchEditExperience() {
+      setError("");
+      const payload = new FormData();
+      payload.append("nombre", nombre);
+      payload.append("descripcion", descripcion);
+      payload.append("fecha_inicial", fecha_inicial);
+      payload.append("fecha_final", fecha_final);
+      payload.append("precio", precio);
+      payload.append("ubicacion", ubicacion);
+      payload.append("plazas_totales", plazas_totales);
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/experiencias/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            token: token,
+          },
+          body: payload,
+        }
+      );
+      if (res.ok) {
+        history.push(`/app/experience/${id}`);
+      } else {
+        const error = await res.json();
         setError(error.message);
       }
     }
-    console.log('editandooo');
 
-    //Eliminamos una a una las fotos que han sido seleccionadas para ser borradas.
-    if (imagesToDelete.length > 0) {
-      for (let i = 0; i < imagesToDelete.length; i++) {
-        deleteFoto(imagesToDelete[i]);
+    async function saveImage(i, fotos) {
+      const payload = new FormData();
+      payload.append(`foto${i}`, fotos[i]);
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/experiencias/${id}/imagen`,
+        {
+          method: "POST",
+          headers: {
+            token: token,
+          },
+          body: payload,
+        }
+      );
+      if (res.ok) {
+        history.push(`/app/experience/${id}`);
+      } else {
+        const error = await res.json();
+        setError(error.message);
       }
     }
+    try {
+      //Eliminamos una a una las fotos que han sido seleccionadas para ser borradas.
+      if (imagesToDelete.length > 0) {
+        for (let i = 0; i < imagesToDelete.length; i++) {
+          deleteFoto(imagesToDelete[i]);
+        }
+      }
+      //Añadimos una a una las imágenes que han sido introducidas.
+      const fotos = filesInputFotosRef.current.files;
 
+      if (fotos.length + images.length > 4) {
+        throw  new Error("máximo 4 fotos por experiencia");
+      } else {
+        for (let i = 0; i < fotos.length; i++) {
+          saveImage(i, fotos);
+        }
+
+      }
+
+      fetchEditExperience();
+    } catch (error) {
+      setError(error.message);
+    }
   }
 
   function deleteImage(e) {
@@ -136,8 +199,8 @@ const CreateExperienceForm = (
   }
 
   return (
-    <>
-      <form className="form_create_experience" onSubmit={!edit ? createExperience : editExperience}>
+    <div className='edit-experience'>
+      <form className="edit-experience-form" onSubmit={!edit ? createExperience : editExperience}>
         <div className="contenedor_input">
           <label htmlFor="form_experience_title">Título</label>
           <input
@@ -236,10 +299,11 @@ const CreateExperienceForm = (
 
         <input type="submit" value={edit ? 'guardar cambios' : "crear"} />
         <button>Cancelar</button>
+        {error && <FormError error={error} />}
       </form>
-      {error && <FormError error={error} />}
+      
       {edit && images.length > 0 &&
-        <>
+        <div className='edit-experience-images'>
           <p>Hay {images.length} imagenes</p>
           <List
             data={images}
@@ -250,9 +314,9 @@ const CreateExperienceForm = (
               </div>
             )}
           />
-        </>
+        </div>
       }
-    </>
+    </div>
   );
 };
 export default CreateExperienceForm;

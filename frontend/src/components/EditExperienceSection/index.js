@@ -15,6 +15,7 @@ const EditExperienceSection = () => {
         ?
         <CreateExperienceForm 
         edit={true} 
+        id={experience.id}
         name={experience.nombre} 
         description={experience.descripcion}
         startDate={new Date(experience.fecha_inicial).toISOString().split('T')[0]}

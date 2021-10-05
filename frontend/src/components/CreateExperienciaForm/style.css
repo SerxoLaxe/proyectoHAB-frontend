@@ -1,0 +1,25 @@
+.edit-experience{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.edit-experience-form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.edit-experience-images{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.edit-experience-images img{
+  height: 10rem;
+}
