@@ -8,7 +8,7 @@ import useExperiencia from "../../hooks/useExperiencia";
 import useUsersPart from "../../hooks/useUsersPart";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
 import decodeTokenData from "../../helpers/decodeTokenData";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ParticipantsList from "../ParticipantsList";
 
 const ExperienceSection = () => {
@@ -19,6 +19,15 @@ const ExperienceSection = () => {
   const [loggedUser, setloggedUser] = useState();
   const [userReservation, setUserReservation] = useState(''); //
   const [userRated, setUserRated] = useState();
+  const [ratingSelectorConfig, setRatingSelectorConfig] = useState(
+    {
+      edit: true,
+      count: 4,
+      activeColor: 'black',
+      size: 40,
+      onChange: handleRatingChange,
+    }
+  );
   const history = useHistory();
 
   useEffect(() => {
@@ -30,15 +39,15 @@ const ExperienceSection = () => {
       setloggedUser(decodedToken);
 
       // Controlamos si el usuario tiene reserva y si está ya se ha agotado ( experiencia ya disfrutada).
-      const experienceStartDate = new Date(experiencia.fecha_inicial);
-      const experienceEndingDate = new Date(experiencia.fecha_final);
-
       if (participantes.length > 0) {
+        const experienceStartDate = new Date(experiencia.fecha_inicial);
+        const experienceEndingDate = new Date(experiencia.fecha_final);
         participantes.forEach((participante) => {
           if (participante.id_usuario === decodedToken.id) {
             if (experienceEndingDate <= new Date()) {
               setUserReservation('finished');
               console.log('experiencia terminada, ahora puedes puntuarla');
+              checkIfUserAlreadyRated();
             } else if (experienceStartDate <= new Date() && experienceEndingDate >= new Date()) {
               setReservationState('underway')
               console.log('Experiencia en curso, ya no se puede cancelar la reserva');
@@ -48,6 +57,26 @@ const ExperienceSection = () => {
             }
           }
         });
+      }
+
+      function checkIfUserAlreadyRated() {
+
+        // Comprobamos si la experiencia ha sido ya puntuada por el usuario
+        if (experiencia.puntuaciones.length > 0) {
+          experiencia.puntuaciones.forEach((puntuacion) => {
+            if (puntuacion.id_usuario === decodedToken.id) {
+              setUserRated(puntuacion.puntuacion);
+              setRatingSelectorConfig(
+                {
+                  edit: false,
+                  count: 4,
+                  activeColor: 'black',
+                  size: 40,
+                  value: puntuacion.puntuacion,
+                })
+            }
+          })
+        }
       }
     }
     if (token && !loadingExperiencia && !loadingParticipantes) {
@@ -116,9 +145,33 @@ const ExperienceSection = () => {
     }
   }
 
-  function handleRatingChange(newRating) {
-    console.log(newRating);
-    setUserRated(newRating);
+  function handleRatingChange(ratingValue) {
+    setUserRated(ratingValue);
+    async function fecthRateExperience() {
+      const formData = new FormData();
+      formData.append('puntuacion', ratingValue);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/experiencias/${id}/puntuar`,
+        {
+          method: 'POST',
+          headers: {
+            token: token,
+          },
+          body: formData,
+        });
+      if (res.ok) {
+        console.log('puntuaste:', ratingValue, 'estrellas');
+      }
+    }
+    fecthRateExperience();
+    setRatingSelectorConfig(
+      {
+        edit: false,
+        count: 8,
+        activeColor: 'black',
+        size: 40,
+        value: ratingValue,
+      }
+    )
   }
 
   return (
@@ -180,7 +233,11 @@ const ExperienceSection = () => {
                 {userReservation === 'pending' && <button onClick={cancelarReserva}>Cancelar reserva</button>}
                 {userReservation === '' && <button onClick={reservarExperiencia}>Reservar</button>}
                 {userReservation === 'finished' &&
-                  <ReactStars activeColor='black' size={40} onChange={handleRatingChange} />}
+                  <>
+                    <ReactStars {...ratingSelectorConfig} />
+                    {userRated && <p>Ya has puntuado esta experiencia</p>}
+                  </>
+                }
               </>
               :
               <p>Inicia sesión para poder realizar tu reserva.</p>
