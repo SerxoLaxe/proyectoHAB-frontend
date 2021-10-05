@@ -175,7 +175,7 @@ const ExperienceSection = () => {
       {!loadingExperiencia &&
         <>
           <div className="experience-title">
-          <h2 className="experiencia_titulo">{experiencia.nombre}</h2>
+            <h2 className="experiencia_titulo">{experiencia.nombre}</h2>
             {experiencia.rating > 0 && <ReactStars edit={false} value={experiencia.rating} activeColor='black' color='transparent' count={4} size={30} />}
           </div>
           <div className="experience-carrousel">
@@ -189,7 +189,7 @@ const ExperienceSection = () => {
               >
                 {experiencia.fotos.map((foto) => (
                   <img
-                  className='experience-image'
+                    className='experience-image'
                     src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${foto.foto}`}
                     key={foto.id}
                     alt="Foto de la experiencia"
@@ -201,28 +201,40 @@ const ExperienceSection = () => {
             )}
           </div>
           <div className='experience-info'>
-              <p className="experiencia_fechas">{`del ${new Date(
-                experiencia.fecha_inicial
-              ).toLocaleDateString()} al ${new Date(
-                experiencia.fecha_final
-              ).toLocaleDateString()} en ${experiencia.ubicacion}`}</p>
-
-              <div className="experiencia_plazas">
-                <p className="experiencia_plazas_disponibles">{`${experiencia.plazas_totales - participantes.length} plazas libres`}</p>
-                <p className="experiencia_plazas_totales">{`de ${experiencia.plazas_totales} plazas en total`}</p>
+            <div className="experience-dates">
+              <div>
+                <img alt='calendar-logo' src='/calendar.svg' />
+                <p>{`del ${new Date(experiencia.fecha_inicial).toLocaleDateString()} al ${new Date(experiencia.fecha_final).toLocaleDateString()} `}</p>
               </div>
-              <p className="experiencia_descripcion">{experiencia.descripcion}</p>
-              <div className="experiencia_precio">
-                <h2>por {`${experiencia.precio} €`}</h2>
+              <div>
+                <img alt='place-logo' src='/place-point.svg' />
+                <p>{`en ${experiencia.ubicacion}`}</p>
+              </div>
+            </div>
+
+            <div className="experience-seats">
+              <div className="available-seats">
+                <p >{`${experiencia.plazas_totales - participantes.length} plazas libres`}</p>
+              </div>
+              <div className="total-seats">
+                <p >{`de ${experiencia.plazas_totales} plazas en total`}</p>
               </div>
 
+
+            </div>
+
+            <p className="experience-description">{experiencia.descripcion}</p>
+            <div className="experience-price">
+              <h2>por {`${experiencia.precio} €`}</h2>
+            </div>
+            <div className='experience-variable-elements'>
               {loggedUser
                 ?
                 <>
                   {loggedUser.role === 'admin'
                     &&
                     <>
-                      <button>Editar</button>
+                      <button onClick={()=>{history.push(`/app/edit-experience/${id}`)}}>Editar</button>
                       <button onClick={eliminarExperiencia}>Eliminar</button>
                     </>}
                   {userReservation === 'pending' && <button onClick={cancelarReserva}>Cancelar reserva</button>}
@@ -237,6 +249,7 @@ const ExperienceSection = () => {
                 :
                 <p>Inicia sesión para poder realizar tu reserva.</p>
               }
+            </div>
           </div>
           {loggedUser && !loadingParticipantes &&
             <div className='experience-participants'>

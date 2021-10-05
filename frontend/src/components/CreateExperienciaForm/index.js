@@ -1,10 +1,23 @@
 import "./style.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useUserTokenContext } from "../../contexts/UserTokenContext";
 import { useHistory } from "react-router";
 import FormError from "../FormError";
+import List from "../List";
 
-const CreateExperienceForm = () => {
+const CreateExperienceForm = (
+  {
+    edit,
+    name,
+    description,
+    startDate,
+    endDate,
+    price,
+    location,
+    totalSeats,
+    pictures,
+  }
+) => {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [fecha_inicial, setFecha_inicial] = useState("");
@@ -12,10 +25,35 @@ const CreateExperienceForm = () => {
   const [precio, setPrecio] = useState("");
   const [ubicacion, setUbicacion] = useState("");
   const [plazas_totales, setPlazas_totales] = useState("");
+  const [images, setImages] = useState([])
   const [error, setError] = useState("");
+  const [imagesUpdated, setImagesUpdated]= useState(true);
   const filesInputFotosRef = useRef();
   const [token] = useUserTokenContext();
   const history = useHistory();
+
+  useEffect(() => {
+    if (edit) {
+      setNombre(name);
+      setDescripcion(description);
+      setFecha_inicial(startDate);
+      setFecha_final(endDate);
+      setPrecio(price);
+      setPlazas_totales(totalSeats);
+      setImages(pictures);
+      setUbicacion(location)
+    }
+  }, [
+    edit,
+    name,
+    description,
+    startDate,
+    endDate,
+    price,
+    location,
+    totalSeats,
+    pictures
+  ])
 
   const createExperience = async (e) => {
     e.preventDefault();
@@ -62,9 +100,30 @@ const CreateExperienceForm = () => {
     }
   };
 
+  function editExperience(e) {
+    e.preventDefault();
+    console.log('editandooo');
+  }
+
+  function deleteImage(e) {
+    const imageIndex = e.target.getAttribute('index');
+    console.log('index to delete:', imageIndex);
+    const imagesCopy = [...images];
+    console.log('imagesCopy:', imagesCopy);
+    const filteredImages = images.filter((image, index, arr) => {
+      console.log(index, parseInt(imageIndex));
+      return (index !== parseInt(imageIndex) && image)
+    });
+    console.log('filteredImages', filteredImages);
+    setImagesUpdated(false);
+    setImages(filteredImages);
+    setImagesUpdated(true);
+    
+  }
+
   return (
     <>
-      <form className="form_create_experience" onSubmit={createExperience}>
+      <form className="form_create_experience" onSubmit={!edit ? createExperience : editExperience}>
         <div className="contenedor_input">
           <label htmlFor="form_experience_title">Título</label>
           <input
@@ -154,15 +213,31 @@ const CreateExperienceForm = () => {
             }}
           />
         </div>
-        <input
+        {pictures.length < 4 && <input
           type="file"
           multiple
           ref={filesInputFotosRef}
           accept=".jpg,.png,.jpeg"
-        />
-        <input type="submit" value="Crear entrada" />
+        />}
+
+        <input type="submit" value={edit ? 'guardar cambios' : "crear"} />
+        <button>Cancelar</button>
       </form>
       {error && <FormError error={error} />}
+      {edit && imagesUpdated && pictures.length > 0 &&
+        <>
+          <p>Hay {pictures.length} imagenes</p>
+          <List
+            data={pictures}
+            render={(image, index) => (
+              <div key={image.id}>
+                <img alt='experience' src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`} />
+                <button image-id={image.id} index={index} onClick={deleteImage}>Eliminar</button>
+              </div>
+            )}
+          />
+        </>
+      }
     </>
   );
 };

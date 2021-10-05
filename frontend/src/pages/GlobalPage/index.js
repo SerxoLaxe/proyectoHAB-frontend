@@ -7,6 +7,7 @@ import NotFound from "../../components/NotFound";
 import HomeSection from "../../components/HomeSection";
 import CreateExperiencePage from "../CreateExperiencePage";
 import ExperienceSection from "../../components/ExperienceSection";
+import EditExperienceSection from "../../components/EditExperienceSection";
 
 const GlobalPage = () => {
   const { path } = useRouteMatch();
@@ -27,6 +28,9 @@ const GlobalPage = () => {
           </Route>
           <Route path={`${path}/new-experience`}>
             <CreateExperiencePage />
+          </Route>
+          <Route path={`${path}/edit-experience/:id`} >
+            <EditExperienceSection/>
           </Route>
           <Route path={`${path}/search`}>
             <SearchResult />

@@ -27,7 +27,84 @@
 }
 .experience-info{
   grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
+
+.experience-info .experience-dates{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+}
+
+.experience-dates div{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+.experience-dates *{
+  max-height: 2rem;
+}
+
+.experience-dates p{
+  white-space: nowrap;
+  font-weight: 800;
+}
+
+ .experience-seats{
+  display: flex;
+  flex-direction: row;
+  height: 4rem;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  background-color:black;
+  border-radius: 0.5rem 0.5rem 0rem 0.5rem;
+}
+
+.experience-seats *{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.experience-seats div:first-child{
+  border-right: 1px solid white;
+}
+
+.experience-seats p{
+  color: white;
+}
+
+.experience-seats .available-seats{
+  font-size: 2rem;
+  font-weight:800;
+}
+.experience-seats .total-seats{
+  width: fit-content;
+  white-space: nowrap;
+  padding: 0 1rem 0 1rem ;
+}
+
+.experience-price{
+  font-size:2.5rem;
+}
+
+.experience-variable-elements{
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
 .experience-participants{
   grid-area: users;
 }
