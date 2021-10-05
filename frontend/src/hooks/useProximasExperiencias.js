@@ -5,11 +5,12 @@ const useProximasExperiencias = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
     const fechaActual = new Date();
     const fechaInicial = fechaActual.toISOString().split(`T`)[0];
 
     const fechaFinal = new Date(fechaActual);
-    fechaFinal.setDate(fechaActual.getDate() + 30);
+    fechaFinal.setDate(fechaActual.getDate() + 365);
 
     const fechaFinalString = fechaFinal.toISOString().split(`T`)[0];
 
