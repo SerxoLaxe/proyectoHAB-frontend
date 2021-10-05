@@ -8,7 +8,6 @@ const EditExperienceSection = () => {
 
   if ( !loadingExperience){
     console.log(experience);
-    console.log();
   }
   return (
     <div>

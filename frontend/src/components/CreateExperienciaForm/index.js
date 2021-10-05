@@ -26,9 +26,9 @@ const CreateExperienceForm = (
   const [precio, setPrecio] = useState("");
   const [ubicacion, setUbicacion] = useState("");
   const [plazas_totales, setPlazas_totales] = useState("");
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState([]);
+  const [imagesToDelete, setImagesToDelete] = useState([]);
   const [error, setError] = useState("");
-  const [imagesUpdated, setImagesUpdated]= useState(true);
   const filesInputFotosRef = useRef();
   const [token] = useUserTokenContext();
   const history = useHistory();
@@ -55,6 +55,7 @@ const CreateExperienceForm = (
     totalSeats,
     pictures
   ])
+  console.log(pictures);
 
   const createExperience = async (e) => {
     e.preventDefault();
@@ -103,20 +104,35 @@ const CreateExperienceForm = (
 
   function editExperience(e) {
     e.preventDefault();
+    async function deleteFoto(id) {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/experiencias/imagen/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            token: token
+          }
+        });
+      if (!res.ok) {
+        const error = await res.json();
+        setError(error.message);
+      }
+    }
     console.log('editandooo');
+
+    //Eliminamos una a una las fotos que han sido seleccionadas para ser borradas.
+    if (imagesToDelete.length > 0) {
+      for (let i = 0; i < imagesToDelete.length; i++) {
+        deleteFoto(imagesToDelete[i]);
+      }
+    }
+
   }
 
   function deleteImage(e) {
     const imageId = e.target.getAttribute('image-id');
-    console.log('index to delete:', imageId);
-    const imagesCopy = [...images];
-    console.log('imagesCopy:', imagesCopy);
-    const filteredImages = lodash.remove(images, (element)=>{console.log(element.id, imageId); return element.id !== parseInt(imageId)});
-    console.log('filteredImages', filteredImages);
-    //setImagesUpdated(false);
+    setImagesToDelete(imagesToDelete.concat(parseInt(imageId)));
+    const filteredImages = lodash.remove(images, (element) => { return element.id !== parseInt(imageId) });
     setImages(filteredImages);
-   // setImagesUpdated(true);
-    
   }
 
   return (
@@ -222,11 +238,11 @@ const CreateExperienceForm = (
         <button>Cancelar</button>
       </form>
       {error && <FormError error={error} />}
-      {edit && pictures.length > 0 &&
+      {edit && images.length > 0 &&
         <>
-          <p>Hay {pictures.length} imagenes</p>
+          <p>Hay {images.length} imagenes</p>
           <List
-            data={pictures}
+            data={images}
             render={(image, index) => (
               <div key={image.id}>
                 <img alt='experience' src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${image.thumbnail}`} />
