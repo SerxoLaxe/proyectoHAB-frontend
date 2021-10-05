@@ -11,7 +11,14 @@ const Slider = ({ images }) => {
 			<h1 style={{ 
 			 margin: '20px', fontSize: '2rem', textAlign: 'center'
 			}} className=''>Disfruta Estas Experiencias Ahora</h1>
-			<Carousel infiniteLoop={true} showThumbs={false} showIndicators={false } autoPlay={true} intervalo={5000} showArrows={false} showStatus={false} 
+			<Carousel infiniteLoop={true} 
+			showThumbs={false} 
+			emulateTouch={true}
+			showIndicators={false } 
+			autoPlay={true} 
+			intervalo={5000} 
+			showArrows={false} 
+			showStatus={false} 
 
 			className=''>
 				{images.map((image) => (
