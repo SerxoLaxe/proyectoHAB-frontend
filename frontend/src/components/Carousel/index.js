@@ -10,7 +10,7 @@ function Carousel() {
   useEffect(() => {
     function getData() {
       if (!loadingExperiencias) {
-        console.log("experiencias", experiencias);
+        
         const data = experiencias.map((experiencia) => {
           const image = experiencia.thumbnails
             .split(",")[0]
@@ -23,17 +23,17 @@ function Carousel() {
             rating: experiencia.rating,
           };
         });
-        console.log("data", data);
+        
 		setData(data)
       }
     }
     getData();
-  }, [loadingExperiencias]);
+  },[experiencias, loadingExperiencias],);
 
   
 
   return (
-    <div className="carousel">
+    <div className="carousel_img">
 		{!loadingExperiencias &&  <Slider images={data} />}
      
     </div>
