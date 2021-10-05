@@ -13,17 +13,17 @@ const LandingPage = () => {
             <Carousel className=''/>
        </div>  
 
-       <div className='container_searchBar'>
-            <SearchBar ClassName='searchBar'/>
-       </div>  
-
        <div className='container_titles'>
             <Titles className='titles'/>
        </div>
 
-      <div className='container_register_form'>
+       <div className='container_searchBar'>
+            <SearchBar ClassName='searchBar'/>
+       </div>  
+
+       <div className='container_register_form'>
             <RegisterForm className='registerforma'/> 
-      </div>
+       </div>
 
        <div className="container_footer_landing">
 
