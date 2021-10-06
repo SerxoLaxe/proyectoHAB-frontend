@@ -24,7 +24,7 @@ const CreateExperienceForm = (
   const [descripcion, setDescripcion] = useState("");
   const [fecha_inicial, setFecha_inicial] = useState("");
   const [fecha_final, setFecha_final] = useState("");
-  const [precio, setPrecio] = useState("");
+  const [precio, setPrecio] = useState('');
   const [ubicacion, setUbicacion] = useState("");
   const [plazas_totales, setPlazas_totales] = useState("");
   const [images, setImages] = useState([]);
@@ -34,8 +34,9 @@ const CreateExperienceForm = (
   const [token] = useUserTokenContext();
   const history = useHistory();
 
+
   useEffect(() => {
-    if (edit) {
+    if (edit === true) {
       setNombre(name);
       setDescripcion(description);
       setFecha_inicial(startDate);
@@ -56,6 +57,10 @@ const CreateExperienceForm = (
     totalSeats,
     pictures
   ]);
+
+
+
+
 
   const createExperience = async (e) => {
     e.preventDefault();
@@ -177,7 +182,7 @@ const CreateExperienceForm = (
       const fotos = filesInputFotosRef.current.files;
 
       if (fotos.length + images.length > 4) {
-        throw  new Error("máximo 4 fotos por experiencia");
+        throw new Error("máximo 4 fotos por experiencia");
       } else {
         for (let i = 0; i < fotos.length; i++) {
           saveImage(i, fotos);
@@ -198,6 +203,8 @@ const CreateExperienceForm = (
     setImages(filteredImages);
   }
 
+
+
   return (
     <div className='edit-experience'>
       <form className="edit-experience-form" onSubmit={!edit ? createExperience : editExperience}>
@@ -215,7 +222,7 @@ const CreateExperienceForm = (
         </div>
         <div className="contenedor_input">
           <label htmlFor="form_experience_descripcion">Descripción</label>
-          <input
+          <textarea
             id="form_experience_descripcion"
             name="form_experience_descripcion"
             value={descripcion}
@@ -225,32 +232,36 @@ const CreateExperienceForm = (
             }}
           />
         </div>
-        <div className="contenedor_input">
-          <label htmlFor="form_experience_fecha_inicial">Fecha Inicial</label>
-          <input
-            id="form_experience_fecha_inicial"
-            name="form_experience_fecha_inicial"
-            required
-            type="date"
-            value={fecha_inicial}
-            onChange={(e) => {
-              setFecha_inicial(e.target.value);
-            }}
-          />
+        <div className="contenedor-fechas">
+
+          <div>
+            <label htmlFor="form_experience_fecha_inicial">Fecha Inicial</label>
+            <input
+              id="form_experience_fecha_inicial"
+              name="form_experience_fecha_inicial"
+              required
+              type="date"
+              value={fecha_inicial}
+              onChange={(e) => {
+                setFecha_inicial(e.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <label htmlFor="form_experience_fecha_final">Fecha Final</label>
+            <input
+              id="form_experience_fecha_final"
+              name="form_experience_fecha_final"
+              required
+              type="date"
+              value={fecha_final}
+              onChange={(e) => {
+                setFecha_final(e.target.value);
+              }}
+            />
+          </div>
         </div>
-        <div className="contenedor_input">
-          <label htmlFor="form_experience_fecha_final">Fecha Final</label>
-          <input
-            id="form_experience_fecha_final"
-            name="form_experience_fecha_final"
-            required
-            type="date"
-            value={fecha_final}
-            onChange={(e) => {
-              setFecha_final(e.target.value);
-            }}
-          />
-        </div>
+
         <div className="contenedor_input">
           <label htmlFor="form_experience_ubicacion">Ubicacion</label>
           <input
@@ -290,18 +301,18 @@ const CreateExperienceForm = (
             }}
           />
         </div>
-        {pictures.length < 4 && <input
+        <input
           type="file"
           multiple
           ref={filesInputFotosRef}
           accept=".jpg,.png,.jpeg"
-        />}
+        />
 
         <input type="submit" value={edit ? 'guardar cambios' : "crear"} />
         <button>Cancelar</button>
         {error && <FormError error={error} />}
       </form>
-      
+
       {edit && images.length > 0 &&
         <div className='edit-experience-images'>
           <p>Hay {images.length} imagenes</p>

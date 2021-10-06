@@ -46,7 +46,7 @@ const SliderLandingPage = () => {
       } else {
         setCurrentExperience(currentExperience => currentExperience + 1);
       }
-    }, 20000)
+    }, 8000)
     return () => { clearInterval(intervalId) }
   }, [currentExperience, data]);
 
@@ -56,7 +56,7 @@ const SliderLandingPage = () => {
       {data.length > 0
         ?
         <div key={data[currentExperience].id} className='slider-item' onClick={() => { history.push(`/app/experience/${data[currentExperience].id}`) }}>
-          <img src={data[currentExperience].image} alt={data[currentExperience].title} />
+            <img src={data[currentExperience].image} alt={data[currentExperience].title} />
           <div className='slider-item-info'>
             <div className='slider-item-info-top'>
               <div className='slider-item-left-side'>

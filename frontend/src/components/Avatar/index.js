@@ -33,7 +33,7 @@ const Avatar = ({ avatar, name, id, mode }) => {
       onClick={() => { setAvatarMenuOpen(true); }}>
       <img
         className="avatar-img"
-        src={`${process.env.REACT_APP_BACKEND_URL}/fotos/${avatar}` || `${process.env.REACT_APP_BACKEND_URL}/fotos/defaultAvatar.jpg`}
+        src={avatar !== null ? `${process.env.REACT_APP_BACKEND_URL}/fotos/${avatar}` : '/defaultAvatar.png'}
         alt={`Avatar de ${name}`}
       />
       {(avatarMenuOpen && mode === 'menu') && <AvatarMenu userName={name} id={id} />}

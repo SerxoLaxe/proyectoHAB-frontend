@@ -1,7 +1,7 @@
 .edit-experience{
   display: flex;
   flex-direction: row;
-  height: 80vh;
+  height: 90vh;
   padding: 2rem;
   gap: 1rem;
   align-content: center;
@@ -13,6 +13,22 @@
   flex-direction: column;
   gap: 0.5rem;
   justify-content: center;
+}
+
+.edit-experience-form div{
+  display: flex;
+  flex-direction: column;
+}
+.edit-experience-form input{
+  height: 2rem;
+}
+.edit-experience-form label{
+  font-family: 'Montserrat', sans-serif;
+}
+.edit-experience-form .contenedor-fechas{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .edit-experience-images{

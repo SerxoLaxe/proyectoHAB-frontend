@@ -4,14 +4,14 @@ import { useHistory } from "react-router-dom";
 import "./style.css";
 
 const EditUserForm = ({ id, data }) => {
-  const [userName, setUserName] = useState("");
-  const [userBio, setUserBio] = useState("");
-  const [newAvatar, setNewAvatar] = useState(
-    `${process.env.REACT_APP_BACKEND_URL}/fotos/${data.avatar}`
-  );
+  const [userName, setUserName] = useState(data.nombre);
+  const [userBio, setUserBio] = useState(data.biografia);
+  const [newAvatar, setNewAvatar] = useState(data.avatar ? `${process.env.REACT_APP_BACKEND_URL}/fotos/${data.avatar}` : '/defaultAvatar.png');
   const [file, setFile] = useState("");
   const [token] = useUserTokenContext();
   const history = useHistory();
+
+  console.log(data);
 
   function handleAvatarChange(e) {
     const avatarFile = e.target.files[0]; // accessing file
@@ -62,14 +62,18 @@ const EditUserForm = ({ id, data }) => {
         }}
       />
       <div className="profile-info-div">
+        <label htmlFor='userName'>Nombre</label>
         <input
+          name='userBio'
           type="text"
           placeholder={data.nombre}
           onChange={(e) => {
             setUserName(e.target.value);
           }}
         />
+        <label htmlFor='userBio'>Biografía</label>
         <input
+          name='userBio'
           type="text"
           placeholder={data.biografia}
           onChange={(e) => {

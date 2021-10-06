@@ -23,13 +23,21 @@ const ExperienceSection = () => {
       edit: true,
       count: 4,
       activeColor: 'black',
-      size: 40,
+      size: 80,
       onChange: handleRatingChange,
     }
   );
+  const [experienceFinished, setExperienceFinished] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
+
+    function isExperienceFinished() {
+      if (new Date(experiencia.fecha_final) <= new Date) {
+        console.log('premio');
+        setExperienceFinished(true);
+      }
+    }
     // Esta función marca el estado de la reserva.
     function setReservationState() {
 
@@ -75,6 +83,7 @@ const ExperienceSection = () => {
       }
     }
     if (token && !loadingExperiencia && !loadingParticipantes) {
+      isExperienceFinished();
       setReservationState();
     }
   }, [token, participantes, experiencia, loadingExperiencia, loadingParticipantes]);
@@ -164,7 +173,7 @@ const ExperienceSection = () => {
         edit: false,
         count: 4,
         activeColor: 'black',
-        size: 40,
+        size: 80,
         value: ratingValue,
       }
     )
@@ -174,10 +183,6 @@ const ExperienceSection = () => {
     <div className='experience-section-wrapper'>
       {!loadingExperiencia &&
         <>
-          <div className="experience-title">
-            <h2 className="experiencia_titulo">{experiencia.nombre}</h2>
-            {experiencia.rating > 0 && <ReactStars edit={false} value={experiencia.rating} activeColor='black' color='transparent' count={4} size={30} />}
-          </div>
           <div className="experience-carrousel">
             {experiencia.fotos.length > 0 ? (
               <Carousel
@@ -200,11 +205,20 @@ const ExperienceSection = () => {
               <p>No hay fotos</p>
             )}
           </div>
+
           <div className='experience-info'>
+            <div className="experience-title">
+              <h1 className="experiencia_titulo">{experiencia.nombre}</h1>
+              {experiencia.rating > 0 && <ReactStars edit={false} value={experiencia.rating} activeColor='black' color='transparent' count={4} size={30} />}
+            </div>
             <div className="experience-dates">
               <div>
                 <img alt='calendar-logo' src='/calendar.svg' />
-                <p>{`del ${new Date(experiencia.fecha_inicial).toLocaleDateString()} al ${new Date(experiencia.fecha_final).toLocaleDateString()} `}</p>
+                <p>{!experienceFinished
+                  ?
+                  `del ${new Date(experiencia.fecha_inicial).toLocaleDateString()} al ${new Date(experiencia.fecha_final).toLocaleDateString()} `
+                  :
+                  'FINALIZADA'}</p>
               </div>
               <div>
                 <img alt='place-logo' src='/place-point.svg' />
@@ -219,10 +233,7 @@ const ExperienceSection = () => {
               <div className="total-seats">
                 <p >{`de ${experiencia.plazas_totales} plazas en total`}</p>
               </div>
-
-
             </div>
-
             <p className="experience-description">{experiencia.descripcion}</p>
             <div className="experience-price">
               <h2>por {`${experiencia.precio} €`}</h2>
@@ -234,16 +245,19 @@ const ExperienceSection = () => {
                   {loggedUser.role === 'admin'
                     &&
                     <>
-                      <button onClick={()=>{history.push(`/app/edit-experience/${id}`)}}>Editar</button>
+                      <button onClick={() => { history.push(`/app/edit-experience/${id}`) }}>Editar</button>
                       <button onClick={eliminarExperiencia}>Eliminar</button>
-                    </>}
-                  {userReservation === 'pending' && <button onClick={cancelarReserva}>Cancelar reserva</button>}
-                  {userReservation === '' && <button onClick={reservarExperiencia}>Reservar</button>}
+                    </>}{!experienceFinished &&
+                      <>
+                        {userReservation === 'pending' && <button onClick={cancelarReserva}>Cancelar reserva</button>}
+                        {userReservation === '' && <button onClick={reservarExperiencia}>Reservar</button>}
+                      </>}
+
                   {userReservation === 'finished' &&
-                    <>
-                      <ReactStars {...ratingSelectorConfig} />
-                      {userRated && <p>Ya has puntuado esta experiencia</p>}
-                    </>
+                    <div className='rating-section'>
+                      {userRated ? <p>Ya has puntuado esta experiencia</p> : <p>Puntúa tu experiencia</p>}
+                      <ReactStars className='react-stars'{...ratingSelectorConfig} />
+                    </div>
                   }
                 </>
                 :
@@ -255,7 +269,7 @@ const ExperienceSection = () => {
             <div className='experience-participants'>
               {participantes.length > 0
                 ?
-                <ParticipantsList participants={participantes} loggedUserId={loggedUser.id} userReservationState={userReservation} />
+                <ParticipantsList participants={participantes} loggedUserId={loggedUser.id} userReservationState={userReservation} experienceFinished={experienceFinished} />
                 :
                 <p>Todavía no hay nadie apuntado</p>
               }

@@ -39,7 +39,6 @@ const RegisterForm = () => {
           type='email'
           placeholder='Email...'
           onChange={(e) => { setEmail(e.target.value) }}
-          autoFocus
         />
         <input
           id='register-password'
@@ -49,9 +48,7 @@ const RegisterForm = () => {
         <p>Al registrarte aceptas nuestros <Link to='/termsandconditions'>Términos y condiciones</Link></p>
         <input type='submit' value='Registrate' />
       </form>
-      <div className='register_text_box'>
-        <p>¿Ya tienes una cuenta? <Link to='/login'>Inicia sesión</Link></p>
-      </div>
+      <p>¿Ya tienes una cuenta? <Link to='/login'>Inicia sesión</Link></p>
       {error && <FormError error={error} />}
     </div>
   );

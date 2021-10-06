@@ -4,7 +4,7 @@ const CreateExperiencePage = () => {
   return (
     <div className="create_experience_page">
       <h2 className="create_experience_title">Añade una experiencia</h2>
-      <CreateExperienceForm />
+      <CreateExperienceForm edit={false}/>
     </div>
   );
 };
