@@ -6,7 +6,10 @@
   height: 100vh;
   gap: 4rem;
 }
-
+.login-page .logo{
+  align-self: flex-start;
+  margin: 1rem;
+}
 
 
 .loginform {

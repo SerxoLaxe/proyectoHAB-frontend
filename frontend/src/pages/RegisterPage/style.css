@@ -6,7 +6,10 @@
   height: 100vh;
   gap: 4rem;
 }
-
+.register_page .logo{
+  align-self: flex-start;
+  margin:1rem;
+}
 
 
 .register_form {

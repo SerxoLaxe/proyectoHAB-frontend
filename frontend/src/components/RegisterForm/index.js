@@ -29,22 +29,32 @@ const RegisterForm = () => {
     }
   }
 
-    return (
-      <div className='register_div'>
+  return (
+    <div className='register-div'>
       <h2>Únete ahora</h2>
 
-        <form className='register_form' onSubmit={register}>
-          <input id='register-email' type='email' placeholder='Email...' onChange={(e) => { setEmail(e.target.value) }} autoFocus />
-          <input id='register-password' type='password' placeholder='Contraseña...' onChange={(e) => { setPassword(e.target.value) }} />
-          <p>Al registrarte aceptas nuestros <Link to='/termsandconditions'>Términos y condiciones</Link></p>
-          <input type='submit' value='Registrate' />
-        </form>
-        <div className='register_text_box'>
-      <p>¿Ya tienes una cuenta? <Link to='/login'>Inicia sesión</Link></p>
+      <form className='register-form' onSubmit={register}>
+        <input
+          id='register-email'
+          type='email'
+          placeholder='Email...'
+          onChange={(e) => { setEmail(e.target.value) }}
+          autoFocus
+        />
+        <input
+          id='register-password'
+          type='password' placeholder='Contraseña...'
+          onChange={(e) => { setPassword(e.target.value) }}
+        />
+        <p>Al registrarte aceptas nuestros <Link to='/termsandconditions'>Términos y condiciones</Link></p>
+        <input type='submit' value='Registrate' />
+      </form>
+      <div className='register_text_box'>
+        <p>¿Ya tienes una cuenta? <Link to='/login'>Inicia sesión</Link></p>
       </div>
-        {error && <FormError error={error} />}
-      </div>
-    );
-  }
+      {error && <FormError error={error} />}
+    </div>
+  );
+}
 
-  export default RegisterForm
+export default RegisterForm

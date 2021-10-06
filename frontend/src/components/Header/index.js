@@ -46,7 +46,7 @@ const Header = () => {
   return (
     <div className="header">
       <Logo />
-      <SearchBar />
+      <SearchBar className='header-search-bar' filter={true}/>
       <div className='about-component'>
         <img className="three-dots" src="/three-dots.svg" alt="more" onClick={() => { setAboutMenuOpen(true) }} ref={node} />
         {aboutMenuOpen &&

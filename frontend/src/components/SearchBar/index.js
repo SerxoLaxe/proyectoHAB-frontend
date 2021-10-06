@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import './style.css'
 import { useHistory } from "react-router";
 
-const SearchBar = () => {
+const SearchBar = ({filter}) => {
   const [searchText, setSearchText] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -83,6 +83,7 @@ const SearchBar = () => {
             setSearchText(e.target.value);
           }}
         />
+        {filter && 
         <div className='filter-component'
           onClick={() => { setFilterMenuOpen(true); }}>
           <input
@@ -107,7 +108,7 @@ const SearchBar = () => {
               <button type='button' onClick={reset}>reset</button>
             </div>
           )}
-        </div>
+        </div>}
         <input
           type='submit'
           value='Buscar'

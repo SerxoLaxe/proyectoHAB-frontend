@@ -1,9 +1,11 @@
 .edit-experience{
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: 80vh;
   padding: 2rem;
   gap: 1rem;
+  align-content: center;
+  justify-content: center;
 }
 
 .edit-experience-form{

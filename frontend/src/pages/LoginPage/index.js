@@ -7,7 +7,7 @@ import './style.css';
 const LoginPage = () => {
   return (
     <div className='login-page'>
-      <Logo name='logo' />
+      <Logo className='logo' />
       <LoginForm name='loginform' />
       <Footer name='footer' />
 

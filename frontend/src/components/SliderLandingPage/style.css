@@ -1,0 +1,47 @@
+.slider-wrapper {
+	display: flex;
+	flex-direction: column;
+	max-height: 100vh;
+  background-color: black;
+}
+.slider-item {
+	display: flex;
+	flex-direction: column;
+}
+
+.slider-item img {
+	object-fit: cover;
+	max-height: 85vh;
+}
+.slider-wrapper .slider-item p {
+  color: white;
+}
+.slider-item h1{
+  color: white;
+  font-size: 2.5rem;
+}
+
+.slider-item-info-top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 1rem 0 1rem;
+  border-bottom: 1px solid white;
+}
+
+.slider-item-left-side{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.slider-item-price{
+  font-size: 3.5rem;
+  font-weight: 800;
+}
+
+.slider-item-description{
+  padding: 1rem;
+}

@@ -1,58 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;700&display=swap');
-
-   
-.container_carousel_img {
-   
-    grid-area: carousel_img;
-}
-.container_titles  {
-    grid-area: titles;
-    gap: 5rem;
-    margin-left: 2rem;
-}
-.container_searchBar {
-    position:absolute;
-    top: 18rem;
-    right: 8.5rem;
-    width: 30rem;
+.landing-wrapper {
+	display: grid;
+  grid-template-columns: 5fr 2fr;
+	grid-template-areas:
+		"slider  right-side";
+    height: 100vh;
+    width: 100vw;
 }
 
-.searchBar {
-    grid-area: searchBar;
-}   
-
-.container_register_form {
-    display: grid;
-    justify-content: center;
-    position:absolute;
-    top: 32rem;
-    right: 10rem;;
+.landing-slider{
+  grid-area: slider;
+  height: 100vh;
+  
 }
 
-.registerforma {
-    grid-area: register;
+.landing-right-side{
+  grid-area: right-side;
+  padding: 1rem;
+  display: grid;
+  border-left: 2px solid black;
+  grid-template-rows: repeat(auto);
+  margin-bottom: 5rem;
+  align-items: center;
+  justify-content: center;
 }
-.container_footer_landing {
-    display: flex;
-    position: absolute;
-    z-index: 100;
-    top: 52rem;
-    }
-    
-.footer_landig {
-    grid-area: footer;
+
+.landing-logo{
+width: max-content;
 }
-.container_landing_page {
-    background-image: url(../../assets/image/fondo.jpg);
-    display: grid;
-    grid-template:
 
-    "carousel_img   titles"
-    "carousel_img   searchBar"
-    "carousel_img   register" 
-    "footer         footer"/
-     50rem auto;
-    
-    padding: 2rem;
-    }
 
+.landing-register-form{
+align-self: center;
+justify-self: center;
+}

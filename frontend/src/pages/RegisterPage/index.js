@@ -6,7 +6,7 @@ import './style.css';
 const RegisterPage = () => {
   return (
     <div className='register_page'>
-      <Logo name='logo'/>
+      <Logo className='logo'/>
       <RegisterForm name='register_form'/>
       <Footer name='footer'/>
     </div>
