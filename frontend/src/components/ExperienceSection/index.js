@@ -209,7 +209,7 @@ const ExperienceSection = () => {
           <div className='experience-info'>
             <div className="experience-title">
               <h1 className="experiencia_titulo">{experiencia.nombre}</h1>
-              {experiencia.rating > 0 && <ReactStars edit={false} value={experiencia.rating} activeColor='black' color='transparent' count={4} size={30} />}
+              {experiencia.rating > 0 && <ReactStars edit={false} value={experiencia.rating} activeColor='black' color='transparent' className='react-stars' count={4} size={30} />}
             </div>
             <div className="experience-dates">
               <div>

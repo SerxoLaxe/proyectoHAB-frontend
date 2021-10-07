@@ -18,13 +18,18 @@
   border-bottom: 1px solid black;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .experience-title h1{
   font-weight: 900;
   font-size: 3rem;
-  
+  white-space: nowrap;
+}
+
+.experience-title .react-stars{
+  display: flex;
+  flex-direction: row;
 }
 .experience-carrousel{
   grid-area: carrousel;

@@ -9,7 +9,7 @@ const LandingPage = () => {
     <div className='landing-wrapper'>
       <SliderLandingPage className='landing-slider' />
       <div className='landing-right-side'>
-        <Logo className='landing-logo'/>
+        <img alt='main-logo' className='main-logo' src='logo.svg'/>
         <SearchBar ClassName='landing-searchBar' />
         <RegisterForm className='landing-register-form' />
       </div>
